@@ -8,7 +8,7 @@ class Footer extends React.Component{
         return(
             <footer>
                 <div>
-                    {this.props.copyright}
+                    @2018
                 </div>
             </footer>
         )

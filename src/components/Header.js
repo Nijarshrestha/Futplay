@@ -1,31 +1,24 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
- 
+import {SocialIcon} from 'react-social-icons';
+
 class Header extends React.Component{
-    constructor(props){
-        super(props);
-    }
     render(){
         return(
             <header>
-                <div className="logo">
-                    Futplay
+                <div className="main-container">
+                    <div className="container">
+                        <div className="title">
+                            
+                        </div>
+                            <div className="media-links">
+                               <SocialIcon url="http://facebook.com" color="white"/>
+                                <SocialIcon url="http://twitter.com" color="white"/>
+                            </div>  
+                    </div>
                 </div>
-                    <nav>
-                        <ul>
-                            <li className="first">
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/aboutus">About Us</Link> 
-                            </li>
-                            <li className="last">
-                                <Link to="/contacts">Contacts</Link>
-                            </li>
-                        </ul>
-                    </nav>
             </header>
         )
     }
 }
+
 export default Header
