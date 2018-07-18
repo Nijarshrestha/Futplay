@@ -23,8 +23,9 @@ class App extends React.Component{
                     <Header/>
                     <Navbar/>
                         <div className="container">
-                            <Route path='/' exact={true} component={Login}/>    
-                            <Route path='/' exact={true} component={Login}/>
+                            <Route path='/' exact={true} component={Home}/>
+                            <Route path='/aboutus' exact={true} component={AboutUs}/>       
+                            <Route path='/login' exact={true} component={Login}/>
                             <Route path='/register' exact={true} component={Register}/>
                             <Route path='/contact' exact={true} component={Contact}/>
                         </div>
