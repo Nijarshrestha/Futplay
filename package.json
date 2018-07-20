@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js",
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production"
   },
+  "proxy": "http://localhost:3000/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nijarshrestha/Futplay.git"
@@ -19,8 +21,6 @@
   },
   "homepage": "https://github.com/Nijarshrestha/Futplay#readme",
   "dependencies": {
-    "@okta/okta-react": "^1.0.2",
-    "@okta/okta-signin-widget": "^2.10.0",
     "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "body-parser": "^1.18.3",
@@ -34,9 +34,14 @@
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^3.6.0",
     "css-loader": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "mongoose": "^5.2.4",
     "node-sass": "^4.9.2",
+    "nodemon": "^1.18.3",
+    "passport": "^0.4.0",
     "react-router-dom": "^4.3.1",
     "react-social-icons": "^3.0.0",
     "sass-loader": "^7.0.3",

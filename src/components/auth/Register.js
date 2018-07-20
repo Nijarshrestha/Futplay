@@ -1,46 +1,64 @@
 import React from 'react';
-import {Alert, Button, FormGroup, controlId, Label,FormControl,HelpBlock,ControlLabel} from 'react-bootstrap'
+import {Alert, Button, FormGroup, controlId, Label,FormControl,HelpBlock,ControlLabel} from 'react-bootstrap';
+import axios from 'axios'
 
 class Register extends React.Component{
     constructor(props){
         super(props);
 
-        this.handleDismiss = this.handleDismiss.bind(this);
-        this.handleShow = this.handleShow.bind(this);
-
-        this.state= {
-            show:true
+        this.state = {
+            Firstname: "",
+            Lastname:"",
+            Email:"",
+            Phonenumber:"",
+            Password: "",
+            Username:""
         }
+        this.handleChangeFirstname = this.handleChangeFirstname.bind(this)
+        this.handleChangeLastname = this.handleChangeLastname.bind(this)
+        this.handleChangeEmail = this.handleChangeEmail.bind(this)
+        this.handleChangePhonenumber = this.handleChangePhonenumber.bind(this)
+        this.handleChangeUsername = this.handleChangeUsername.bind(this)
+        this.handleChangePassword = this.handleChangePassword.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
-    handleDismiss() {
-        this.setState({ show: false });
-      }
-    
-      handleShow() {
-        this.setState({ show: true });
-      }
+
+    handleChangeFirstname(event){
+        this.setState({Firstname:event.target.value})
+    }
+    handleChangeLastname(event){
+        this.setState({Lastname:event.target.value})
+    }
+    handleChangeEmail(event){
+        this.setState({Email:event.target.value})
+    }
+    handleChangePhonenumber(event){
+        this.setState({Phonenumber:event.target.value})
+    }
+    handleChangePassword(event){
+        this.setState({Password:event.target.value})
+    }
+    handleChangeUsername(event){
+        this.setState({Username:event.target.value})
+    }
+
+    handleSubmit(){        
+        const User = [
+            {Firstname: this.state.Firstname},
+            {Lastname: this.state.Lastname},
+            {Email: this.state.Email},
+            {Phonenumber: this.state.Phonenumber},
+            {Username: this.state.Username},
+            {Password: this.state.Password}
+        ]
+
+       axios({
+           method:'post',
+           url:'http://localhost:3000/data',
+           data:{User}
+       })
+    }
     render(){
-    //     if (this.state.show) {
-    //         return (
-    //           <Alert bsStyle="warning" onDismiss={this.handleDismiss}>
-    //             <h4>Oh snap! You got an error!</h4>
-    //             <p>
-    //               Change this and that and try again. Duis mollis, est non commodo
-    //               luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-    //               Cras mattis consectetur purus sit amet fermentum.
-    //             </p>
-    //             <p>
-    //               <Button bsStyle="danger">Take this action</Button>
-    //               <span> or </span>
-    //               <Button onClick={this.handleDismiss}>Hide Alert</Button>
-    //             </p>
-    //           </Alert>
-    //         );
-    //       }
-      
-    //       return <Button onClick={this.handleShow}>Show Alert</Button>;
-    //     }
-    // }
         return(
             <div className="register-main-container">
                 <div className="register-mid-container">
@@ -54,6 +72,7 @@ class Register extends React.Component{
                                     <FormControl
                                         type="text"
                                         placeholder="Enter first name"
+                                        onChange={this.handleChangeFirstname}
                                     />
                                     <FormControl.Feedback/>
                                 </FormGroup>
@@ -62,6 +81,7 @@ class Register extends React.Component{
                                     <FormControl
                                         type="text"
                                         placeholder="Enter last name"
+                                        onChange={this.handleChangeLastname}
                                     />
                                     <FormControl.Feedback/>
                                 </FormGroup>
@@ -70,6 +90,7 @@ class Register extends React.Component{
                                     <FormControl
                                         type="email"
                                         placeholder="Enter email address"
+                                        onChange={this.handleChangeEmail}
                                     />
                                     <FormControl.Feedback/>
                                 </FormGroup>
@@ -78,6 +99,16 @@ class Register extends React.Component{
                                     <FormControl
                                         type="number"
                                         placeholder="Enter phone number"
+                                        onChange={this.handleChangePhonenumber}
+                                    />
+                                    <FormControl.Feedback/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <ControlLabel>Username</ControlLabel>
+                                    <FormControl
+                                        type="text"
+                                        placeholder="Enter Username"
+                                        onChange={this.handleChangeUsername}
                                     />
                                     <FormControl.Feedback/>
                                 </FormGroup>
@@ -86,6 +117,7 @@ class Register extends React.Component{
                                     <FormControl
                                         type="password"
                                         placeholder="Enter password"
+                                        onChange={this.handleChangePassword}
                                     />
                                     <FormControl.Feedback/>
                                 </FormGroup>
@@ -100,7 +132,7 @@ class Register extends React.Component{
                             </form>
                         </div>
                     <div className="register-bottom-container">
-                        <Button bsStyle="primary">Register</Button>
+                        <Button bsStyle="primary" onClick ={this.handleSubmit}>Register</Button>
                     </div>
                 </div>
             </div>

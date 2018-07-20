@@ -11,6 +11,8 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import Signup from './components/auth/signup'
+import App1 from './components/auth/app'
 
 //Styles
 import './style/default.scss'
@@ -28,8 +30,8 @@ class App extends React.Component{
                             <Route path='/login' exact={true} component={Login}/>
                             <Route path='/register' exact={true} component={Register}/>
                             <Route path='/contact' exact={true} component={Contact}/>
+                            <Route path='/test' exact={true} component={App1}/>
                         </div>
-                    <Login/>
                     <Footer/>
                 </div>
             </Router>
