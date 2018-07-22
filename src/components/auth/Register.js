@@ -11,8 +11,10 @@ class Register extends React.Component{
             Lastname:"",
             Email:"",
             Phonenumber:"",
+            Username:"",
             Password: "",
-            Username:""
+            Password2:""
+            
         }
         this.handleChangeFirstname = this.handleChangeFirstname.bind(this)
         this.handleChangeLastname = this.handleChangeLastname.bind(this)
@@ -20,6 +22,7 @@ class Register extends React.Component{
         this.handleChangePhonenumber = this.handleChangePhonenumber.bind(this)
         this.handleChangeUsername = this.handleChangeUsername.bind(this)
         this.handleChangePassword = this.handleChangePassword.bind(this)
+        this.handleChangePassword2 = this.handleChangePassword2.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
@@ -38,24 +41,28 @@ class Register extends React.Component{
     handleChangePassword(event){
         this.setState({Password:event.target.value})
     }
+    handleChangePassword2(event){
+        this.setState({Password2:event.target.value})
+    }
     handleChangeUsername(event){
         this.setState({Username:event.target.value})
     }
 
     handleSubmit(){        
-        const User = [
-            {Firstname: this.state.Firstname},
-            {Lastname: this.state.Lastname},
-            {Email: this.state.Email},
-            {Phonenumber: this.state.Phonenumber},
-            {Username: this.state.Username},
-            {Password: this.state.Password}
-        ]
+        const users = {
+            Firstname: this.state.Firstname,
+            Lastname: this.state.Lastname,
+            Email: this.state.Email,
+            Phonenumber: this.state.Phonenumber,
+            Username: this.state.Username,
+            Password: this.state.Password,
+            Password2: this.state.Password2
+    }
 
        axios({
            method:'post',
-           url:'http://localhost:3000/data',
-           data:{User}
+           url:'http://localhost:3000/api/user',
+           data:{users}
        })
     }
     render(){
@@ -126,6 +133,7 @@ class Register extends React.Component{
                                     <FormControl
                                         type="password"
                                         placeholder="Re-type password again"
+                                        onChange={this.handleChangePassword2}
                                     />
                                     <FormControl.Feedback/>
                                 </FormGroup>

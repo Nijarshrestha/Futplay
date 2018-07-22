@@ -12,15 +12,16 @@ router.get('/',(req, res)=>{
 
 //Post users to api/user
 router.post('/', (req, res)=>{
+    const {Firstname, Lastname, Email, Phonenumber, Username, Password} = req.body.users
     const newUser = new User({
-        Firstname: req.body.Firstname,
-        Lastname : req.body.Lastname,
-        Email : req.body.Email,
-        Phonenumber : req.body.Phonenumber,
-        Username : req.body.Username,
-        Password : req.body.Password
+        Firstname,
+        Lastname,
+        Email,
+        Phonenumber,
+        Username,
+        Password
     });
-
+    newUser.Password = newUser.generateHash(Password);
     newUser.save()
     .then(Users => res.json(Users));
 });

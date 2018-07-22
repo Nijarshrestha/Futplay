@@ -11,8 +11,8 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-import Signup from './components/auth/signup'
 import App1 from './components/auth/app'
+import Bookingpage from './pages/Bookingpage'
 
 //Styles
 import './style/default.scss'
@@ -31,6 +31,7 @@ class App extends React.Component{
                             <Route path='/register' exact={true} component={Register}/>
                             <Route path='/contact' exact={true} component={Contact}/>
                             <Route path='/test' exact={true} component={App1}/>
+                            <Route path='/bookingpage' exact={true} component={Bookingpage}/>
                         </div>
                     <Footer/>
                 </div>
