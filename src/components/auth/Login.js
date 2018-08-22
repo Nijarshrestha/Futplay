@@ -1,5 +1,7 @@
 import React from 'react';
-import {Alert,Button,FormGroup, controlId, Label,FormControl,HelpBlock,ControlLabel} from 'react-bootstrap'
+import {Alert,Button,FormGroup, controlId, Label,FormControl,HelpBlock,ControlLabel} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import Register from './Register'
 
 class Login extends React.Component{
     constructor(props,context){
@@ -66,6 +68,9 @@ class Login extends React.Component{
                     <div className="login-bottom-container">
                         <div className="signin-button">
                             <Button bsStyle="success">Sign In</Button> 
+                            <div className="register-link">
+                                <Link to="/Register">Click here to register</Link>      
+                            </div>
                         </div>
                         {/* <div className="signup-button">
                             <Button bsStyle="success">Register</Button> 

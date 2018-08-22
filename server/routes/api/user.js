@@ -21,11 +21,50 @@ router.post('/', (req, res)=>{
         Username,
         Password
     });
+
+    if(!Firstname){
+        return res.send({
+            success: false,
+            message: "Error: First Name cannot be blank."
+        });
+    }
+    if(!Lastname){
+        return res.send({
+            success: false,
+            message: "Error: Last Name cannot be blank."
+        });
+    }
+    if(!Email){
+        return res.send({
+            success: false,
+            message: "Error: Email cannot be blank."
+        });
+    }
+    if(!Phonenumber){
+        return res.send({
+            success: false,
+            message: "Error: Phone Number cannot be blank."
+        });
+    }
+
+    if(!Username){
+        return res.send({
+            success: false,
+            message: "Error: Username cannot be blank."
+        });
+    }
+
+    if(!Password){
+        return res.send({
+            success: false,
+            message: "Error: Password cannot be blank."
+        });
+    }
+
     newUser.Password = newUser.generateHash(Password);
     newUser.save()
     .then(Users => res.json(Users));
-});
-
+    });
 
 //Delete User from api/user
 router.delete('/:id',(req,res)=>{

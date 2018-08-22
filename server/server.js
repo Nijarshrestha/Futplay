@@ -8,6 +8,7 @@ const port = 3000
 
 const users = require('./routes/api/user')
 const futsalcourts = require('./routes/api/futsalcourts')
+const usersession = require('./routes/api/usersession')
 
 /*****Body parser is used as middleware in express to handle post request*****/
 
@@ -35,6 +36,7 @@ mongoose
 
 app.use('/api/user', users)
 app.use('/api/futsalcourts',futsalcourts)
+app.use('/api/login',usersession)
 
 // app.get('/api/customers', (request,response)=>{
 //     const customers =[

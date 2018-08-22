@@ -4,7 +4,7 @@ import {BrowserRouter as Router,Route
 
 //Components
 import Navbar from './components/layout/Navbar'
-import Home from './pages/Dashboard'
+import Homepage from './pages/Homepage'
 import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
@@ -25,7 +25,7 @@ class App extends React.Component{
                     <Header/>
                     <Navbar/>
                         <div className="container">
-                            <Route path='/' exact={true} component={Home}/>
+                            <Route path='/' exact={true} component={Homepage}/>
                             <Route path='/aboutus' exact={true} component={AboutUs}/>       
                             <Route path='/login' exact={true} component={Login}/>
                             <Route path='/register' exact={true} component={Register}/>
