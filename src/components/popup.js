@@ -28,15 +28,15 @@ class PopUp extends Component{
     render(){
         return(
             <div>
-               <Button color="success" onClick={this.modalToggle}>Reserve{this.props.buttonLabel}</Button>
+               <Button color={this.state.isToggleReserved?"success":'warning'} onClick={this.modalToggle}>{this.state.isToggleReserved?'Reserve':'UnReserve'}{this.props.buttonLabel}</Button>
                <Modal isOpen={this.state.modal} toggle={this.modalToggle} className={this.props.className}>
                     <ModalHeader toggle={this.modalToggle}>Confirmation ?</ModalHeader>
                         <ModalBody>
                             Book futsal ground {/*futsal ground props*/} at this time {/*time props*/} 
                         </ModalBody>
                     <ModalFooter>
-                        <Button color="success" onClick={this.modalToggle}> Confirm</Button>{''}
-                        <Button color ="danger" onClick={this.modalToggle}> Cancel</Button>
+                        <Button color="success" onClick={()=>{this.modalToggle();this.setState({isToggleReserved:!this.state.isToggleReserved})}}> Confirm</Button>{''}
+                        <Button color ="danger" onClick={()=>{this.modalToggle()}}> Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

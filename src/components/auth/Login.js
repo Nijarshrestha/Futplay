@@ -68,6 +68,7 @@ class Login extends React.Component{
                     <div className="login-bottom-container">
                         <div className="signin-button">
                             <Button bsStyle="success">Sign In</Button> 
+                            <br/><br/>
                             <div className="register-link">
                                 <Link to="/Register">Click here to register</Link>      
                             </div>
