@@ -1,23 +1,28 @@
 import React, {Component} from 'react';
-import {Table} from 'reactstrap'
+import {Table, Button,Alert} from 'reactstrap';
+import moment from 'moment';
+// import 'react-datepicker/dist/react-datepicker.css'
+import DatePicker from 'react-datepicker';
+import PopUp from '../popup'
 
 class FutsalCourtList extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            startDate: moment(),
+        };
+        this.handleChangeDate = this.handleChangeDate.bind(this);
+        
+    }
+
+    handleChangeDate(Date){
+        this.setState({
+            startDate:date
+        });
     }
 
     render(){
         return(
-            // <div className="fcl-main-container">
-            //     <div className={`mainlist ${props.className}`}>
-            //         <ul className ='list-group'>
-            //             {props.futsalcourtlist.map((room,idx)=>
-            //                 <li className="list-group-item" key={idx} onClick={props.handleClick.bind(undefined, idx)}>
-            //                     <a href="#">{court.name}</a>
-            //                 </li>)}
-            //         </ul>        
-            //     </div>
-            // </div>
             <div className="fc-booking-table">
                 <Table>
         <thead>
@@ -30,7 +35,16 @@ class FutsalCourtList extends Component{
             <th>Booking Option</th>
           </tr>
         </thead>
-        
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td><input type="date"/></td>
+                <td>Monday</td>
+                <td>6:00-7:00</td>
+                <td>Yes</td>
+                <td><PopUp/></td>
+            </tr>
+        </tbody>
       </Table>
             </div>
         )

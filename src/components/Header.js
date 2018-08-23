@@ -12,7 +12,7 @@ class Header extends React.Component{
                     <div className="container">
                         <div className="title">
                             <div className="login-link">
-                                <Link to="/Login">Login</Link>
+                                
                             </div>
                         </div>
                             <div className="media-links">

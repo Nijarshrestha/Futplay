@@ -26,8 +26,8 @@ class Bookingpage extends Component{
                 Select a futsal ground
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem header>Chaitya Futsal ground</DropdownItem>
-                <DropdownItem disabled>Prismatic Futsal ground</DropdownItem>
+                <DropdownItem >Chaitya Futsal ground</DropdownItem>
+                <DropdownItem >Prismatic Futsal ground</DropdownItem>
                 <DropdownItem></DropdownItem>
                 <DropdownItem></DropdownItem>
               </DropdownMenu>
