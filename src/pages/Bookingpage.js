@@ -1,35 +1,48 @@
 import React,{Component} from 'react';
-import {Dropdown, DropdownToggle,DropdownMenu, DropdownItem, Table} from 'reactstrap';
+import {ButtonDropdown,Dropdown, DropdownToggle,DropdownMenu, DropdownItem, Table} from 'reactstrap';
 import FutsalCourtList from '../components/futsalgrounds/futsalCourtsList'
 
 class Bookingpage extends Component{
     constructor(props){
         super(props);
 
-        this.toggle= this.toggle.bind(this);
         this.state = {
-          dropdownOpen: false
+             dropdownOpen: false,
+             actions:[],
+             dropDownValue: 'Select Day'
         };
+        this.toggle= this.toggle.bind(this);
+        this.changeValue = this.changeValue.bind(this)
       }
-      toggle (){
-        this.setState(prevState=>({
-          dropdownOpen: !prevState.dropdownOpen
-        }));
+
+      toggle(event){
+        this.setState({
+          dropdownOpen: !this.state.dropdownOpen
+        });
+      }
+
+      changeValue(e){
+        this.setState({dropDownValue:e.currentTarget.textContent});
+        
+      }
+
+      componentDidMount(){
       }
       
       render() {
         return (
           <div>  
-            <h1>Futsal Courts</h1>  
+            <h1>Select Day and Time</h1>  
               <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>
-                Select a futsal ground
+                {this.state.dropDownValue}
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem >Chaitya Futsal ground</DropdownItem>
-                <DropdownItem >Prismatic Futsal ground</DropdownItem>
-                <DropdownItem></DropdownItem>
-                <DropdownItem></DropdownItem>
+                  
+                <DropdownItem onClick={this.changeValue}>  Monday</DropdownItem>
+                <DropdownItem onClick={this.changeValue}>  Tuesday</DropdownItem>
+                <DropdownItem onClick={this.changeValue}>  Wednesday</DropdownItem>
+                  
               </DropdownMenu>
               </Dropdown> <br/>
               <FutsalCourtList/> 
@@ -37,7 +50,5 @@ class Bookingpage extends Component{
         );
       }
     }
-    
 
-    
 export default Bookingpage

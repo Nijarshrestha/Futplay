@@ -8,7 +8,7 @@ class Footer extends React.Component{
         return(
             <footer>
                 <div>
-                    @2018
+                ©2018 Futplay
                 </div>
             </footer>
         )
