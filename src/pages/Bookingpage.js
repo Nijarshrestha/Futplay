@@ -39,9 +39,13 @@ class Bookingpage extends Component{
               </DropdownToggle>
               <DropdownMenu>
                   
+                <DropdownItem onClick={this.changeValue}>  Sunday</DropdownItem>
                 <DropdownItem onClick={this.changeValue}>  Monday</DropdownItem>
                 <DropdownItem onClick={this.changeValue}>  Tuesday</DropdownItem>
                 <DropdownItem onClick={this.changeValue}>  Wednesday</DropdownItem>
+                <DropdownItem onClick={this.changeValue}>  Thursday</DropdownItem>
+                <DropdownItem onClick={this.changeValue}>  Friday</DropdownItem>
+                <DropdownItem onClick={this.changeValue}>  Saturday</DropdownItem>
                   
               </DropdownMenu>
               </Dropdown> <br/>
