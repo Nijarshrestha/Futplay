@@ -20,7 +20,8 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/,
-                exclude: /node_modules/,
+                // exclude: [/node_modules/],
+                // include: [/node_modules\/react-datepicker/],
                 use:['style-loader','css-loader','sass-loader']
             },
             {
