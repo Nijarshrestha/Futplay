@@ -64,6 +64,18 @@ class Register extends React.Component{
            url:'http://localhost:3000/api/user',
            data:{users}
        })
+       .then(response =>{
+           console.log(response)
+           if(response.data){
+               console.log('Successfully Registered');
+               this.setState({
+                   redirectTo: '/login'
+               })  
+           }
+            else{
+               console.log('sign-up error')
+           }
+       })
     }
     render(){
         return(
