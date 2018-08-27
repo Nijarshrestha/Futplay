@@ -8,11 +8,17 @@ class Register extends React.Component{
 
         this.state = {
             Firstname: "",
+            FirstnameError:"",
             Lastname:"",
+            LastnameError:"",
             Email:"",
+            EmailError:"",
             Phonenumber:"",
+            PhonenumberError:"",
             Username:"",
+            UsernameError:"",
             Password: "",
+            PasswordError:"",
             Password2:""
             
         }
@@ -48,7 +54,19 @@ class Register extends React.Component{
         this.setState({Username:event.target.value})
     }
 
-    handleSubmit(){        
+    handleSubmit(event){  
+        event.preventDefault();
+        //clear Text boxes
+        this.setState({
+            Firstname: "",
+            Lastname:"",
+            Email:"",
+            Phonenumber:"",
+            Username:"",
+            Password: "",
+            Password2:""
+        })
+
         const users = {
             Firstname: this.state.Firstname,
             Lastname: this.state.Lastname,

@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import '../style/pages/test.css'
 
 class Homepage extends Component{
   render(){

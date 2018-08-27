@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 //User Model
 const User =  require('../../../models/User');
@@ -73,5 +75,40 @@ router.delete('/:id',(req,res)=>{
         .then(()=> res.json({success: true})))
         .catch(err => res.status(404).json({success: false}));
 });
+
+passport.use(new LocalStrategy(
+    function(Username, Password,done){
+        User.getUserByUsername(Username, function(err,user){
+            if(err) throw err;
+            if(user){
+                return done(null, false, {message: "Unknown User"});
+            }
+
+            User.comparePassword(Password, user.Password, function(err, isMatch){
+                if(err) throw err;
+                if(isMatch){
+                    return done(null, user);
+                }else{
+                    return done(null, false, {message: "Invalid Password"});
+                }
+            })
+        })
+    }));
+
+passport.serializeUser(function(user, done){
+    done(null, user.id);
+})
+
+passport.deserializeUser(function(id, done){
+    User.getUserById(id, function(err,user){
+        done(err,user);
+    })
+})
+
+router.post('/api/user',
+    passport.authenticate('local',{sucessRedirect: '/bookingpage', failureRedirect:'/login', failureFlash: true }),
+    function(req,res){
+        res.redirect('/bookingpage');
+    });
 
 module.exports = router;

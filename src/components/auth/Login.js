@@ -7,50 +7,57 @@ import Register from './Register';
 
 
 class Login extends React.Component{
-    constructor(props,context){
-        super(props,context);
+    constructor(props){
+        super(props);
         
-        this.onSubmit = this.onSubmit.bind(this);
-        this.handlenameChange = this.handlenameChange.bind(this);
-        this.handlepasswordChange = this.handlepasswordChange.bind(this)
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this)
         this.state = {
-            username:'', password:''
+            Username:'', 
+            Password:''
         }
     }
 
     getValidationState(){
-        const length = this.state.username.length;
+        const length = this.state.Username.length;
         if(length > 6) return 'success';
         else if(length > 5) return 'warning';
         else if(length > 0) return 'error';
         return null;
     }
     
-    handlenameChange(e){
-        this.setState({username:e.target.value});
+    handleUsernameChange(e){
+        this.setState({Username:e.target.value});
     }
-    handlepasswordChange(e){
-        this.setState({password:e.target.value})
+    handlePasswordChange(e){
+        this.setState({Password:e.target.value})
     }
 
     
-    // onSubmit(e){
-    //     e.preventDefault();
-
-    //     const {username, password}=this.state;
-    //     const {history} = this.props;
-
-    //     this.setState({error: false});
-
-    //     if(!(username ==='nijar' && password === 'nijar')){
-    //         return this.setState({error: true});
-    //     }
-
+    onSubmit(e){
+        e.preventDefault();
         
-    //     history.push('/bookingpage');
-    // }
+        const {history} = this.props
+          axios({
+              method: 'post',
+              url: 'http://localhost:3000/api/login',
+              data: {
+                  Username: this.state.Username,
+                  Password: this.state.Password
+              }
+          })
+          .then(response => {
+              console.log(response)
+              if(response.data){
+                  console.log('Login succesfull');  
+                if(response.data.success===true){
+                    history.push('/bookingpage')
+                }
+            }
+        })
+    }
 
-    
     render(){
         return(
             <div className="login-main-container">
@@ -60,29 +67,21 @@ class Login extends React.Component{
                     </div><br/>
                         <div className="login-input-container">
                             <form>
-                                <FormGroup 
-                                        controlId="formBasicText"
-                                        validationState={this.getValidationState()}
-                                    >
+                                <FormGroup>
                                     <ControlLabel>Username</ControlLabel>
                                     <FormControl
                                         type="text"
-                                        username={this.state.username}
                                         placeholder="Enter Username"
-                                        onChange={this.handlenameChange}
+                                        onChange={this.handleUsernameChange}
                                     />
                                     <FormControl.Feedback/>
                                     </FormGroup>
-                                    <FormGroup 
-                                        controlId="formBasicPassword"
-                                        validationState={this.getValidationState()}
-                                    >
+                                    <FormGroup>
                                     <ControlLabel>Password</ControlLabel>
                                     <FormControl
                                         type="password"
-                                        password={this.state.password}
                                         placeholder="Enter Password"
-                                        onChange={this.handlepasswordChange}
+                                        onChange={this.handlePasswordChange}
                                     />
                                     <FormControl.Feedback/>
                                 </FormGroup>

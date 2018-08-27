@@ -8,27 +8,31 @@ const bcrypt = require('bcrypt');
 const User = require('../../../models/User')
 
 router.post('/',(req, res, next)=>{
-    User.find({Email: req.body.Email})
+    User.find({Username: req.body.Username})
     .exec()
     .then(user =>{
         if(user.length <1){
             return res.status(401).json({
-                message:"Auth Failed"
+                message:"Auth Failed",
+
             })
         }
         bcrypt.compare(req.body.Password, user[0].Password,(err, result)=>{
             if(err){
                 return res.status(401).json({
-                    message:"Auth Failed"
+                    message:"Auth Failed",
+                    success: false
                 });
             }
             if(result){
                 return res.status(200).json({
-                    message: "Auth Successful"
+                    message: "Auth Successful",
+                    success: true
                 })  
             }
             res.status(401).json({
-            message:"Auth Failed"
+            message:"Auth Failed",
+            success: false
         });
     });
 })
