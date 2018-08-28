@@ -29,6 +29,7 @@
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.0",
     "express": "^4.16.3",
+    "fawn": "^2.1.5",
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.22.2",
     "passport": "^0.4.0",
