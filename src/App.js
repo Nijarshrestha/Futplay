@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router,Route
 } from 'react-router-dom';
+import {Provider} from 'react-redux'
 
 //Components
 import Navbar from './components/layout/Navbar'
@@ -9,17 +10,21 @@ import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import Login from './components/auth/Login'
+import Login from './components/auth/LoginContainer'
 import Register from './components/auth/Register'
 import App1 from './components/auth/app'
 import Bookingpage from './pages/Bookingpage'
 
+
 //Styles
 import './style/default.scss'
+import store from './redux/store';
 
 class App extends React.Component{
+
     render(){
         return(
+            <Provider store={store}>
             <Router>
                 <div className='App'>
                     <Header/>
@@ -36,6 +41,7 @@ class App extends React.Component{
                     <Footer/>
                 </div>
             </Router>
+            </Provider>
         )   
     }
 }
