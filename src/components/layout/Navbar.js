@@ -65,8 +65,6 @@ class Navbar extends Component {
        content=''
         onCancel={() => this.setState({ logoutmodalopen: false })}
          onConfirm={() => { this.setState({ logoutmodalopen: false }); this.logOut() }} />
-
-    
       </nav>
      
     );

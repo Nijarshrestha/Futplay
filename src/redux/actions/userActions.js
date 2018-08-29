@@ -16,7 +16,7 @@ export function userLogin(data) {
         }
     })
       .then(response => {
-     
+        localStorage.setItem("FutsalUser", Username);
         dispatch({ type: userConstants.USER_LOGIN_SUCCESS, payload: Username });
       })
       .catch(err => {
@@ -28,11 +28,21 @@ export function userLogin(data) {
 
 export function userlogout() {
   return dispatch => {
+    localStorage.removeItem("FutsalUser");
    dispatch({type: userConstants.USER_LOGOUT});
   }
 }
 
 export function resetError() {
   return dispatch => dispatch({ type: userConstants.RESET_ERROR });
+}
+
+export function checkLogin() {
+  return dispatch => {
+    const user=localStorage.getItem("FutsalUser");
+    if(user) {
+      dispatch({ type: userConstants.USER_LOGIN_SUCCESS, payload: user });
+    }
+  }
 }
 // export function forceLogin()

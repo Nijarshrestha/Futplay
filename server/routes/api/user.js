@@ -10,6 +10,11 @@ const User =  require('../../../models/User');
 router.get('/',(req, res)=>{
     User.find()
         .then(Users=> res.json(Users))
+});
+
+router.get('/:Username',(req,res)=>{
+ User.find({Username : req.params.Username})
+        .then(User => res.json({data:User,success:true}))
 })
 
 //Post users to api/user

@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
   })); 
 
 app.use(express.json());
-app.use(express.urlencoded())
+app.use(express.urlencoded());
 
 //DB Config
 const db = require('../config/keys').mongoURI;
@@ -74,4 +74,4 @@ app.listen(port, (err)=> {
 //     // request.json(data)
 // })
 
-module.exports = app 
+// module.exports = app 
