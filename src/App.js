@@ -13,14 +13,14 @@ import Register from './components/auth/Register';
 import App1 from './components/auth/app';
 import Bookingpage from './pages/Bookingpage';
 import FutsalGround from './pages/FutsalGrounds';
-
-
+import UserDashboard from './pages/UserDashboard';
 
 //Styles
 import './style/default.scss';
 import store, { history } from './redux/store';
 import { ConnectedRouter } from 'connected-react-router';
 import LoginChecker from './LoginChecker';
+
 
 class App extends React.Component {
   render() {
@@ -40,6 +40,7 @@ class App extends React.Component {
                 <Route exact path="/test" render={() =><LoginChecker><App1 {...this.props}/></LoginChecker>} />
                 <Route exact path="/bookingpage"  render={() =><LoginChecker><Bookingpage {...this.props}/></LoginChecker>} />
                 <Route exact path="/futsalgrounds"  render={() =><LoginChecker><FutsalGround {...this.props}/></LoginChecker>} />
+                <Route exact path="/dashboard"  render={() =><LoginChecker><UserDashboard {...this.props}/></LoginChecker>} />
                 </Switch>
               </div>
               <Footer />

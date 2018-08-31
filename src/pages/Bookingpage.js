@@ -111,7 +111,7 @@ class Bookingpage extends Component{
              <Grid>
                 <Grid.Column width={12}>
                 <h1>Select Date And Time</h1>
-            <div className="query-submit">
+                <div className="query-submit">
                     <Dropdown isOpen={this.state.dropdownOpenDate} toggle={this.toggleDate}>
                       <DropdownToggle caret>
                         Select Date
@@ -164,7 +164,7 @@ class Bookingpage extends Component{
 
                     </div>
                </div>
-           }
+              }
                 </Grid.Column>
                 <Grid.Column width={4}>
                  {loading && <Loader/>}
