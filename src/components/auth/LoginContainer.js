@@ -21,7 +21,7 @@ class Login extends React.Component {
   }
   componentWillReceiveProps(newProps) {
     if (newProps.login.loggedIn) {
-      this.props.history.push("/bookingpage");
+      this.props.history.push("/");
     }
   }
   render() {

@@ -3,7 +3,8 @@ import { GET_FUTSAL_GROUNDS_START, GET_FUTSAL_GROUNDS_SUCCESS, GET_FUTSAL_GROUND
 const initial_state = {
   loading: false,
   list: [],
-  error: ''
+  error: '',
+  ids:{}
 };
 
 export default function GroundReducer(state = initial_state, action) {
@@ -14,17 +15,21 @@ export default function GroundReducer(state = initial_state, action) {
       newState.loading = true;
       newState.list = [];
       newState.error = '';
+      newState.ids={};
+      return newState;
 
     case GET_FUTSAL_GROUNDS_SUCCESS:
       newState.loading = false;
       newState.list = action.payload;
       newState.error = '';
+      action.payload.map(ob=>newState.ids[ob._id]=ob)
       return newState;
 
     case GET_FUTSAL_GROUNDS_FAILURE:
       newState.loading = false;
       newState.list = [];
       newState.error = action.payload;
+      newState.ids={};
       return newState;
       
     default:

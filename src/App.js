@@ -30,7 +30,7 @@ class App extends React.Component {
             <div className="App">
               <Header />
               <Navbar />
-              <div className="">
+              <div className="route-content">
               <Switch>
                 <Route exact path="/"   render={() =><LoginChecker {...this.props}><Homepage {...this.props}/></LoginChecker>}/>
                 <Route exact path="/aboutus"  render={() =><LoginChecker {...this.props}><AboutUs {...this.props}/></LoginChecker>} />

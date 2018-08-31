@@ -1,4 +1,4 @@
-import { GET_BOOKINGS_START, GET_BOOKINGS_SUCCESS, GET_BOOKINGS_FAILURE,RESET_BOOKING_LIST } from '../constants';
+import { GET_BOOKINGS_START, GET_BOOKINGS_SUCCESS, GET_BOOKINGS_FAILURE, RESET_BOOKING_LIST } from '../constants';
 
 export function getUserBookings(userId) {
   return dispatch => {
@@ -7,7 +7,7 @@ export function getUserBookings(userId) {
     console.log(data);
     axios({
       method: 'get',
-      url: 'http://localhost:3000/api/booking/'+userId
+      url: 'http://localhost:3000/api/booking/' + userId
     })
       .then(response => {
         dispatch({ type: GET_BOOKINGS_SUCCESS, payload: response.data });
@@ -19,14 +19,14 @@ export function getUserBookings(userId) {
   };
 }
 
-export function getFilteredBookings(groundId,date) {
+export function getFilteredBookings(groundId, date) {
   return dispatch => {
     dispatch({ type: GET_BOOKINGS_START });
 
     console.log(data);
     axios({
       method: 'get',
-      url: 'http://localhost:3000/api/booking/'+groundId+'/'+date
+      url: 'http://localhost:3000/api/booking/' + groundId + '/' + date
     })
       .then(response => {
         dispatch({ type: GET_BOOKINGS_SUCCESS, payload: response.data });
@@ -38,7 +38,12 @@ export function getFilteredBookings(groundId,date) {
   };
 }
 
-
 export function resetBookingList() {
-  return dispatch=> dispatch({type:RESET_BOOKING_LIST})
+  return dispatch => dispatch({ type: RESET_BOOKING_LIST });
+}
+
+export function deleteBooking(id,userid) {
+  return dispatch => {
+    axios({ method: 'delete', url: 'http://localhost:3000/api/booking/' + id }).then(()=>dispatch(getUserBookings(userid)))
+  };
 }
