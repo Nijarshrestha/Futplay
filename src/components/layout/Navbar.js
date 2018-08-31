@@ -20,7 +20,7 @@ class Navbar extends Component {
     const { loggedIn } = this.props;
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-5">
-        <div className="container">
+        <div className="">
           <Link className="navbar-brand" to="/">
 
           </Link>

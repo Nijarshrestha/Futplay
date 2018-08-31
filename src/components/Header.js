@@ -9,7 +9,7 @@ class Header extends React.Component{
         return(
             <header>
                 <div className="main-container">
-                    <div className="container">
+                    <div className="">
                         <div className="title">
                             <div className="login-link">
                                 
