@@ -5,7 +5,7 @@ class FutsalGround extends Component{
 
 render(){
     return(
-            <div className="main-container">
+            <div className="">
                     <Container fluid>
                         <Card.Group text centered itemsperRow={5}>
                         <Card>

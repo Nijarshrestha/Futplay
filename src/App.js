@@ -12,6 +12,8 @@ import Login from './components/auth/LoginContainer';
 import Register from './components/auth/Register';
 import App1 from './components/auth/app';
 import Bookingpage from './pages/Bookingpage';
+import FutsalGround from './pages/FutsalGrounds';
+
 
 
 //Styles
@@ -19,6 +21,7 @@ import './style/default.scss';
 import store, { history } from './redux/store';
 import { ConnectedRouter } from 'connected-react-router';
 import LoginChecker from './LoginChecker';
+
 class App extends React.Component {
   render() {
     return (
@@ -27,7 +30,7 @@ class App extends React.Component {
             <div className="App">
               <Header />
               <Navbar />
-              <div className="container">
+              <div className="">
               <Switch>
                 <Route exact path="/"   render={() =><LoginChecker><Homepage {...this.props}/></LoginChecker>}/>
                 <Route exact path="/aboutus"  render={() =><LoginChecker><AboutUs {...this.props}/></LoginChecker>} />
@@ -36,6 +39,7 @@ class App extends React.Component {
                 <Route exact path="/contact"  render={() =><LoginChecker><Contact {...this.props}/></LoginChecker>} />
                 <Route exact path="/test" render={() =><LoginChecker><App1 {...this.props}/></LoginChecker>} />
                 <Route exact path="/bookingpage"  render={() =><LoginChecker><Bookingpage {...this.props}/></LoginChecker>} />
+                <Route exact path="/futsalgrounds"  render={() =><LoginChecker><FutsalGround {...this.props}/></LoginChecker>} />
                 </Switch>
               </div>
               <Footer />

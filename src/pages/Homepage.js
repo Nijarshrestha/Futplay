@@ -15,8 +15,8 @@ class Homepage extends Component {
           
         </Container>
         <Container textAlign="center">
-          <Link to="/">
-          <Button>Explore Grounds</Button>
+          <Link to="/futsalgrounds">
+          <Button secondary>Explore Grounds</Button>
           </Link>
         </Container>
       </div>
