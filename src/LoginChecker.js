@@ -32,7 +32,7 @@ class LoginChecker extends Component {
     return (
       <div>
         {loggedIn && this.props.children}
-        {!loggedIn && <LoginContainer />}
+        {!loggedIn &&<LoginContainer />}
       </div>
     );
   }

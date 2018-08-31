@@ -17,9 +17,11 @@ import UserDashboard from './pages/UserDashboard';
 
 //Styles
 import './style/default.scss';
+import './style/index.css';
 import store, { history } from './redux/store';
 import { ConnectedRouter } from 'connected-react-router';
 import LoginChecker from './LoginChecker';
+import Nav from './components/layout/Nav';
 
 
 class App extends React.Component {
@@ -28,9 +30,10 @@ class App extends React.Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
             <div className="App">
-              <Header />
+              {/* <Header /> */}
               <Navbar />
-              <div className="route-content">
+              <Nav/>
+              <div style={{marginTop:"100px"}}>
               <Switch>
                 <Route exact path="/"   render={() =><LoginChecker {...this.props}><Homepage {...this.props}/></LoginChecker>}/>
                 <Route exact path="/aboutus"  render={() =><LoginChecker {...this.props}><AboutUs {...this.props}/></LoginChecker>} />

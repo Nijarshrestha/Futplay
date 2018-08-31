@@ -60,7 +60,7 @@ class UserDashboard extends Component{
              {error && <Message negative>{error}</Message>}
            </Grid.Column>
            <Grid.Column mobile={16}computer={10}>
-            <Header as="h1">My Bookings</Header>
+            <Header as="h1" color="grey">My Bookings</Header>
             <br/><br/>
             {bookloading&&<Loader />}
             {bookinglist && bookinglist.map(booking=>{return(
