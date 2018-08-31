@@ -24,40 +24,15 @@ const Schema = mongoose.Schema
 
 const BookingListSchema = new Schema({
 
-  userSchema: { 
-    type: new mongoose.Schema({
-      Name: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 50
-      },
-
-      Phone: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 50
-      }      
-    }),  
+  user: { 
+    type:Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   },
 
-  futsalCourtSchema : {
-    type: new mongoose.Schema({
-      Name: {
-        type: String,
-        required: true,
-        trim: true, 
-        minlength: 5,
-        maxlength: 255
-      } 
-
-    }),
-    Day : String,
-    Time : Number,
-    Username : String,
-    required: true
+  futsalCourt: {
+    type: Schema.Types.ObjectId,
+    ref: 'FutsalCourts'
   },
   Day : {
       required : true,
@@ -78,5 +53,8 @@ const BookingListSchema = new Schema({
   }
 
 });
+
+BookingListSchema.index({futsalCourt:1, Day:1,Date:1,Time:1},{unique:true})
+
 
 module.exports = mongoose.model('bookinglist', BookingListSchema)

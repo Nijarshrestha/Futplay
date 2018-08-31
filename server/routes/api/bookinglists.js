@@ -1,5 +1,5 @@
 const { User } = require('../../../models/User');
-const { FutsalCourts } = require('../../../models/Futsal-Courts');
+const  FutsalCourts  = require('../../../models/Futsal-Courts');
 const { bookinglist } = require('../../../models/bookinglist')
 const mongoose = require('mongoose');
 const Fawn = require('fawn');
@@ -17,10 +17,10 @@ const BookingList = require('../../../models/bookinglist');
 
 
 
-router.get('/',async(req,res)=>{
+router.get('/',(req,res)=>{
 //    const bookinglist = await BookingList.find({Time : } , { } )
-    const futsalCourtList = await FutsalCourts.find();
-           
+    FutsalCourts.find()
+    .then(FutsalCourts=>res.json(FutsalCourts)  ) 
 });
 
 router.get('/:time/:date', async(req, res) => {
@@ -33,7 +33,7 @@ router.get('/:time/:date', async(req, res) => {
 //Post Booking Time to api/bookinglists
 router.post('/', async (req,res)=>{
 
-    const user = await User.findById(req.body.userId);
+    const user = await User.findOne({Username:req.body.Username});
     if(!user) return res.status(400).send('Invalid User');
 
     const futsalcourt = await FutsalCourts.findById(req.body.futsalCourtId);
@@ -54,20 +54,10 @@ router.post('/', async (req,res)=>{
     
 
     let bookinglist = new BookingList({
-        userSchema : {
-            _id : user._id,
-            name: user.Username,
-            phone : user.Phonenumber
-        },
-        futsalCourtSchema : {
-            _id : futsalcourt._id,
-            Name : futsalcourt.Name,
-            Day : req.body.Day,
-            Time : req.body.Time,
-            Username : user.Username
-        },
-        // Day : req.body.Day,
-        // Time : req.body.Time
+        user :  user._id,
+        futsalCourt : futsalcourt._id,
+        Day : req.body.Day,
+        Time : req.body.Time
 
         // startTime : req.body.startTime,
         // endTime : req.body.endTime

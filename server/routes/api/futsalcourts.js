@@ -3,13 +3,13 @@ const router = express.Router();
 
 //FutsalCourts model
 
-const FutsalCourts = require('../../../models/Futsal-Courts');
+const Ground = require('../../../models/groundModel');
 
 //Get Futsal Courts from api/futsalCourts
 
 router.get('/',(req,res)=>{
-    FutsalCourts.find()
-        .then(FutsalCourts=> res.json(FutsalCourts))
+    Ground.find()
+        .then(Ground=> res.json(Ground))
 })
 
 //Post Futsal Courts to api/futsalcourts

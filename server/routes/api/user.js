@@ -9,7 +9,7 @@ const User =  require('../../../models/User');
 //Get users from api/users
 router.get('/',(req, res)=>{
     User.find()
-        .then(Users=> res.json(Users))
+        .then(User=> res.json(User))
 });
 
 router.get('/:Username',(req,res)=>{
@@ -116,4 +116,5 @@ router.post('/api/user',
         res.redirect('/bookingpage');
     });
 
+    
 module.exports = router;

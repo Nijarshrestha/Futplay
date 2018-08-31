@@ -178,6 +178,7 @@ class Bookingpage extends Component{
                         <span className='date'><Icon name="mail"/> {data.Email}</span>
                       </Card.Meta>
                       <Card.Description><Icon name="phone"/>{data.Phonenumber}</Card.Description>
+                      <Card.Description><Icon name="name"/>{data.Firstname} {data.Lastname}</Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                     </Card.Content>

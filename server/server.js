@@ -6,10 +6,12 @@ const path = require('path')
 const port = 3000
 
 
-const users = require('./routes/api/user')
-const futsalcourts = require('./routes/api/futsalcourts')
-const usersession = require('./routes/api/usersession')
-const bookinglists = require('./routes/api/bookinglists')
+const users = require('./routes/api/user');
+const futsalcourts = require('./routes/api/futsalcourts');
+const usersession = require('./routes/api/usersession');
+const bookinglists = require('./routes/api/bookinglists');
+const grounds = require('./routes/api/groundapi');
+const bookingapi = require('./routes/api/bookingapi');
 
 /*****Body parser is used as middleware in express to handle post request*****/
 
@@ -35,10 +37,13 @@ mongoose
 
 //Use Routes
 
-app.use('/api/user', users)
-app.use('/api/futsalcourts',futsalcourts)
-app.use('/api/login',usersession)
-app.use('/api/bookinglists',bookinglists)
+app.use('/api/user', users);
+app.use('/api/futsalcourts',futsalcourts);
+app.use('/api/login',usersession);
+app.use('/api/bookinglists',bookinglists);
+app.use('/api/grounds',grounds);
+app.use('/api/booking',bookingapi)
+
 
 // app.get('/api/customers', (request,response)=>{
 //     const customers =[
