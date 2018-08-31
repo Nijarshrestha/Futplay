@@ -50,7 +50,7 @@ class Navbar extends Component {
               </Link>
               </li>
               <li className="nav-item">
-                {loggedIn ? <span className="nav-link" onClick={() => this.setState({ logoutmodalopen: true })}>LogOut</span> : <Link className="nav-link" to="/Login">
+                {loggedIn ? <span className="nav-link" style={{cursor:'pointer'}} onClick={() => this.setState({ logoutmodalopen: true })}>LogOut</span> : <Link className="nav-link" to="/Login">
                   Login
               </Link>}
               </li>

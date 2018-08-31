@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import { Card, Icon, Image,Container, Header, Loader, Message } from 'semantic-ui-react'
 import { getAllGrounds } from "../redux/actions/futsalGround";
+import {connect} from 'react-redux';
+import { bindActionCreators } from "redux";
+
 class FutsalGround extends Component{
 
     constructor(props){
@@ -50,5 +53,6 @@ const mapStateToProps = state => ({
   const mapDispatchToProps = dispatch => ({
     getAllGrounds: bindActionCreators(getAllGrounds, dispatch),
   });
+
 export default connect(mapStateToProps,mapDispatchToProps)(FutsalGround);
 
