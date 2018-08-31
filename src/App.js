@@ -29,13 +29,13 @@ class App extends React.Component {
               <Navbar />
               <div className="container">
               <Switch>
-                <Route exact path="/"   render={() =><LoginChecker><Homepage {...this.props}/></LoginChecker>}/>
-                <Route exact path="/aboutus"  render={() =><LoginChecker><AboutUs {...this.props}/></LoginChecker>} />
+                <Route exact path="/"   render={() =><LoginChecker {...this.props}><Homepage {...this.props}/></LoginChecker>}/>
+                <Route exact path="/aboutus"  render={() =><LoginChecker {...this.props}><AboutUs {...this.props}/></LoginChecker>} />
                 <Route exact path="/login"  component={Login} />
                 <Route exact path="/register"  component={Register}  />
-                <Route exact path="/contact"  render={() =><LoginChecker><Contact {...this.props}/></LoginChecker>} />
-                <Route exact path="/test" render={() =><LoginChecker><App1 {...this.props}/></LoginChecker>} />
-                <Route exact path="/bookingpage"  render={() =><LoginChecker><Bookingpage {...this.props}/></LoginChecker>} />
+                <Route exact path="/contact"  render={() =><LoginChecker {...this.props}><Contact {...this.props}/></LoginChecker>} />
+                <Route exact path="/test" render={() =><LoginChecker {...this.props}><App1 {...this.props}/></LoginChecker>} />
+                <Route exact path="/bookingpage"  render={() =><LoginChecker {...this.props}><Bookingpage {...this.props}/></LoginChecker>} />
                 </Switch>
               </div>
               <Footer />
