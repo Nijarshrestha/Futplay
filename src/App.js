@@ -22,7 +22,7 @@ import store, { history } from './redux/store';
 import { ConnectedRouter } from 'connected-react-router';
 import LoginChecker from './LoginChecker';
 import Nav from './components/layout/Nav';
-
+import NotFound from './NotFound';
 
 class App extends React.Component {
   render() {
@@ -44,6 +44,7 @@ class App extends React.Component {
                 <Route exact path="/bookingpage"  render={() =><LoginChecker><Bookingpage {...this.props}/></LoginChecker>} />
                 <Route exact path="/futsalgrounds"  render={() =><LoginChecker><FutsalGround {...this.props}/></LoginChecker>} />
                 <Route exact path="/dashboard"  render={() =><LoginChecker><UserDashboard {...this.props}/></LoginChecker>} />
+                <Route path="*" component={NotFound} />
                 </Switch>
               </div>
               <Footer />
