@@ -28,8 +28,7 @@ class App extends React.Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
             <div className="App">
-              <Header />
-              <Navbar />
+              <Navbar/>
               <div className="">
               <Switch>
                 <Route exact path="/"   render={() =><LoginChecker><Homepage {...this.props}/></LoginChecker>}/>
@@ -43,7 +42,6 @@ class App extends React.Component {
                 <Route exact path="/dashboard"  render={() =><LoginChecker><UserDashboard {...this.props}/></LoginChecker>} />
                 </Switch>
               </div>
-              <Footer />
             </div>
         </ConnectedRouter>
       </Provider>

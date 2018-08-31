@@ -30,7 +30,6 @@ class UserDashboard extends Component{
             <Grid.Column width={4}>
             {loading && <Loader/>}
             {!loading && 
-
              <Card>
                <Header  textAlign='center' as ="h1">Profile</Header>
                <Card.Content>

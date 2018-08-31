@@ -44,8 +44,8 @@ class FutsalCourtList extends Component{
         </thead>
        <OptRow ground="Mates Futsal" day={day} date={date} time={this.props.time} index="1" />
        <OptRow ground="Tahachal Futsal" index="2"  day={day} date={date} time={this.props.time}/>
-       <OptRow ground="Busy Futsal" index="3" day={day} date={date} time={this.props.time}/>
-       <OptRow ground="Dhukku Futsal" index="4" day={day} date={date} time={this.props.time}/>
+       <OptRow ground="Chaitya Futsal" index="3" day={day} date={date} time={this.props.time}/>
+       <OptRow ground="Lalitpur 5A-side Futsal" index="4" day={day} date={date} time={this.props.time}/>
       </Table>
             </div>
         )

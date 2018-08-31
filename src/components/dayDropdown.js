@@ -28,8 +28,6 @@ class DayDropdown extends Component{
  componentDidMount(){
  }
 
-
- 
  render() {
    return (
         <div>  

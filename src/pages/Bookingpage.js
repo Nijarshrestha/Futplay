@@ -73,7 +73,6 @@ class Bookingpage extends Component{
         });
       }
 
-
       changeValue(e){
         this.setState({
             dropdownOpenTime: !this.state.dropdownOpenTime,
@@ -88,7 +87,6 @@ class Bookingpage extends Component{
       }
 
       componentWillMount(){
-        
       }
 
       componentDidMount(){
@@ -98,7 +96,6 @@ class Bookingpage extends Component{
       componentWillReceiveProps(newProps) {
         if(newProps.Username!==null && newProps.Username!==this.props.Username) {
         this.props.profileActions.getUserProfile(this.props.Username);
-          
         }
       }
 
@@ -145,9 +142,8 @@ class Bookingpage extends Component{
                               <option value="5">10-11 am</option>
                               <option value="6">11-12 am</option>
                         </select>
-                  
                         <Button color="primary" onClick={this.submitHandler}>Search</Button>
-            </div>
+                  </div>
             <br/>
   
            {
@@ -161,7 +157,6 @@ class Bookingpage extends Component{
                     <h1>Available Futsal Court By Futplay for Booking</h1>
                   </div>
                     <div className="afcc-slide-container">
-
                     </div>
                </div>
               }
