@@ -19,6 +19,7 @@ class FutsalGround extends Component {
     console.log(data, error, loading);
     return (
       <div className="">
+      <Header as="h1"color="grey" textAlign="center">Grounds Near You!</Header>
         <Container fluid>
           {loading && <Loader />}
           {error && <Message negative>{error}</Message>}
@@ -51,6 +52,8 @@ class FutsalGround extends Component {
                 );
               })}
           </Card.Group>
+      <Header as="h3"color="grey" textAlign="center">Hurry and book your favourite Futsal Ground.</Header>
+
           <br/><br/>
         </Container>
       </div>

@@ -15,11 +15,13 @@ class Homepage extends Component {
           
         </Container>
         <Container textAlign="center">
+        <br/><br/><br/><br/><br/><br/>
           <Link to="/futsalgrounds">
           <Button color="black" size="massive" icon labelPosition='right'>Explore Grounds
           <Icon name="right chevron"/></Button>
           </Link>
         </Container>
+        <br/><br/><br/>
       </div>
     )
   }
