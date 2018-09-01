@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as userConstants from "./../constants/userConstants";
+import { getUserProfile } from "./userProfileAction";
 
 export function userLogin(data) {
   return dispatch => {
@@ -45,6 +46,7 @@ export function checkLogin() {
     console.log(user);
     if(user) {
       dispatch({ type: userConstants.USER_LOGIN_SUCCESS, payload: user });
+      dispatch(getUserProfile(user));
     }
   }
   }

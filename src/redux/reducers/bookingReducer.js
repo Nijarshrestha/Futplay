@@ -1,9 +1,25 @@
-import { GET_BOOKINGS_START, GET_BOOKINGS_SUCCESS, GET_BOOKINGS_FAILURE,RESET_BOOKING_LIST } from '../constants';
+import {
+  GET_BOOKINGS_START,
+  GET_BOOKINGS_SUCCESS,
+  GET_BOOKINGS_FAILURE,
+  RESET_BOOKING_LIST,
+  GET_CURRENT_BOOKING
+} from '../constants';
 
 const initial_state = {
   loading: false,
   list: [],
-  error: ''
+  error: '',
+  currentBooking: { _id: '',
+   date: '',
+     1: false,
+     2: false,
+     3: false,
+     4: false,
+     5: false,
+     6: false,
+     groundId: '' 
+    }
 };
 
 export default function bookingReducer(state = initial_state, action) {
@@ -26,12 +42,15 @@ export default function bookingReducer(state = initial_state, action) {
       newState.list = [];
       newState.error = action.payload;
       return newState;
-    
+
     case RESET_BOOKING_LIST:
-      newState.loading= false;
-      newState.list= [];
-      newState.error='';
+      newState.loading = false;
+      newState.list = [];
+      newState.error = '';
       return newState;
+
+    case GET_CURRENT_BOOKING:
+      return { ...state,currentBooking:{...state.currentBooking, ...action.payload }};
     default:
       return state;
   }
