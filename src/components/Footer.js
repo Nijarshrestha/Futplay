@@ -53,7 +53,7 @@ class Footer extends React.Component {
             <br />
             <br />
             <Header as="h4" style={{ width: '100%' }} inverted textAlign="center">
-              © All Rights Reserved. FutsalNepal
+              © All Rights Reserved. FutplayNepal
             </Header>
           </Grid>
         </Container>
