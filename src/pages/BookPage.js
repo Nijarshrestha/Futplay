@@ -87,7 +87,7 @@ class BookPage extends Component {
         </Dimmer>
         <Dimmer active={this.state.bookmodal}>
           <Card.Group>
-            <Card raised style={{ left: '40%' }}>
+            <Card raised className="modalcard">
               <Icon
                 color="red"
                 inverted

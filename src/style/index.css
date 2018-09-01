@@ -47,6 +47,7 @@ html,body {
 
 
 
+@media only screen and (min-width: 480px) {
 
 
 #myVideo {
@@ -66,8 +67,25 @@ html,body {
 	height:100vh;
 	padding-top:100px;
 }
-
-
+}
+.modalcard{
+	left:40% ;
+}
+@media only screen and (max-width:479px) {
+  #myVideo{
+    display:none
+	}
+	.fixcontent{
+		margin:0px;
+		height:auto;
+	}
+	.mb-5, .my-5 {
+    margin-bottom: 0rem!important;
+}
+.modalcard{
+	left:7% !important;
+}
+}
 
 
 

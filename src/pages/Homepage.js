@@ -47,7 +47,6 @@ class Homepage extends Component {
           <br />
           <br />
         </div>
-        <div style={{ height: '100vh' }} />
       </div>
     );
   }
