@@ -19,3 +19,4 @@
   
   export const RESET_BOOKING_LIST = 'RESET_BOOKING_LIST';
   
+  export const GET_CURRENT_BOOKING = 'GET_CURRENT_BOOKING';
