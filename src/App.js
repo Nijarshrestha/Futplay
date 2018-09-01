@@ -19,10 +19,11 @@ import UserDashboard from './pages/UserDashboard';
 import './style/default.scss';
 import './style/index.css';
 import store, { history } from './redux/store';
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter } from 'react-router-redux';
 import LoginChecker from './LoginChecker';
 import Nav from './components/layout/Nav';
 import NotFound from './NotFound';
+import BookPage from './pages/BookPage';
 
 class App extends React.Component {
   render() {
@@ -44,6 +45,7 @@ class App extends React.Component {
                 <Route exact path="/bookingpage"  render={() =><LoginChecker><Bookingpage {...this.props}/></LoginChecker>} />
                 <Route exact path="/futsalgrounds"  render={() =><LoginChecker><FutsalGround {...this.props}/></LoginChecker>} />
                 <Route exact path="/dashboard"  render={() =><LoginChecker><UserDashboard {...this.props}/></LoginChecker>} />
+                <Route exact path="/booking/:groundId"  render={() =><LoginChecker><BookPage {...this.props}/></LoginChecker>} />
                 <Route path="*" component={NotFound} />
                 </Switch>
               </div>

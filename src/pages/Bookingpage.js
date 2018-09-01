@@ -123,7 +123,7 @@ class Bookingpage extends Component{
                           />
                         </DropdownMenu>
                     </Dropdown>
-                    {/* <Dropdown isOpen= {this.state.dropdownOpenTime} toggle={this.toggleTime}>
+                    <Dropdown isOpen= {this.state.dropdownOpenTime} toggle={this.toggleTime}>
                       <DropdownToggle caret>
                         Select Time
                       </DropdownToggle>
@@ -135,7 +135,7 @@ class Bookingpage extends Component{
                               <DropdownItem value="5">10-11 am</DropdownItem>
                               <DropdownItem value="6">11-12 am</DropdownItem>
                         </DropdownMenu>
-                  </Dropdown> */}
+                  </Dropdown>
                    <select value={this.state.value} onChange={this.handleChangeTime}>
                               <option value="0">Select Time</option>
                               <option value="1">6-7 am</option>

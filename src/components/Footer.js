@@ -28,10 +28,10 @@ class Footer extends React.Component {
               <Grid.Column width={3}>
                 <Header inverted as="h4" content="Services" />
                 <List link inverted>
-                  <List.Item content={<a href="/">Futsal Bookings</a>}> </List.Item>
-                  <List.Item content={<a href="/futsalgrounds">Discover Grounds</a>}></List.Item>
-                  <List.Item content={<a href="/dashboard">User Booking Dashboard</a>}></List.Item>
-                  <List.Item content={<a href="/notfound">Advertisement(Coming Soon)</a>}></List.Item>
+                  <List.Item content={<a href="/">Futsal Bookings</a>} />
+                  <List.Item content={<a href="/futsalgrounds">Discover Grounds</a>} />
+                  <List.Item content={<a href="/dashboard">User Booking Dashboard</a>} />
+                  <List.Item content={<a href="/notfound">Advertisement(Coming Soon)</a>} />
                 </List>
               </Grid.Column>
               <Grid.Column width={3}>
@@ -45,7 +45,7 @@ class Footer extends React.Component {
               </Grid.Column>
               <Grid.Column width={7}>
                 <Header as="h4" inverted>
-                 Looking for advertisement?
+                  Looking for advertisement?
                 </Header>
                 <p>We will be giving advertisement options as soon as possible. Please keep in touch!</p>
               </Grid.Column>

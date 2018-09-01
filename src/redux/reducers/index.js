@@ -4,11 +4,11 @@ import { reducer as formReducer } from 'redux-form'
 import userProfileReducer from "./userProfileReducer";
 import GroundReducer from "./groundReducer";
 import bookingReducer from "./bookingReducer";
-
+import {routerReducer} from 'react-router-redux';
 export default combineReducers({ login : userReducer,
     userprofile: userProfileReducer,
     form: formReducer,
     ground:GroundReducer,
-    booking:bookingReducer
-    
+    booking:bookingReducer,
+    router:routerReducer
 });

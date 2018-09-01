@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { userlogout } from '../../redux/actions/userActions';
 import { Confirm, Image,Icon,Menu,Dropdown,Container } from 'semantic-ui-react';
-import { push } from 'connected-react-router';
+import { push } from 'react-router-redux';
 
 class Nav extends Component{
   constructor(props) {

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { checkLogin } from './redux/actions/userActions';
-import { push } from 'connected-react-router';
+import { push } from 'react-router-redux';
 import LoginContainer from './components/auth/LoginContainer';
 
 class LoginChecker extends Component {
