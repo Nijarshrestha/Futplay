@@ -38,12 +38,15 @@ export function resetError() {
 }
 
 export function checkLogin() {
-  return dispatch => {
+  return (dispatch,getState) => {
+    const userexists= getState().login.Username;
+    if(!userexists){
     const user=localStorage.getItem("FutsalUser");
     console.log(user);
     if(user) {
       dispatch({ type: userConstants.USER_LOGIN_SUCCESS, payload: user });
     }
+  }
   }
 }
 // export function forceLogin()

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Container, Divider, Button } from 'semantic-ui-react'
+import { Container, Divider, Button, Icon } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 class Homepage extends Component {
@@ -15,10 +15,13 @@ class Homepage extends Component {
           
         </Container>
         <Container textAlign="center">
+        <br/><br/><br/><br/><br/><br/>
           <Link to="/futsalgrounds">
-          <Button secondary>Explore Grounds</Button>
+          <Button color="black" size="massive" icon labelPosition='right'>Explore Grounds
+          <Icon name="right chevron"/></Button>
           </Link>
         </Container>
+        <br/><br/><br/>
       </div>
     )
   }

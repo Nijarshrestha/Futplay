@@ -4,6 +4,7 @@ const init_state = {
     loading: false,
     error: '',
     data: {}, 
+    loaded:false
 }
 
 const userProfileReducer = (state = init_state,action)=>{
@@ -14,10 +15,12 @@ const userProfileReducer = (state = init_state,action)=>{
         newState.loading = true;
         newState.error = '';
         newState.data = '';
+        newState.loaded=false;
         return newState;
 
     case USER_PROFILE_SUCCESS:
         newState.loading = false;
+        newState.loaded=true;
         newState.error = '';
         newState.data = action.payload;
         console.log(action.payload, newState,'yo ho');
@@ -27,6 +30,8 @@ const userProfileReducer = (state = init_state,action)=>{
         newState.loading = false;
         newState.error = action.payload;
         newState.data = '';
+        newState.loaded=false;
+
         return newState;
 
 

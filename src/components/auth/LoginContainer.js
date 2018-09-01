@@ -1,14 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import LoginForm from "./LoginForm";
-import * as userActions from "../../redux/actions/userActions";
-
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import LoginForm from './LoginForm';
+import * as userActions from '../../redux/actions/userActions';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit= this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentWillUnmount() {
     this.props.userActions.resetError();
@@ -21,12 +20,28 @@ class Login extends React.Component {
   }
   componentWillReceiveProps(newProps) {
     if (newProps.login.loggedIn) {
-      this.props.history.push("/bookingpage");
+      this.props.history.push('/');
     }
   }
   render() {
     const { login } = this.props;
-    return <LoginForm loggingIn={login.logging} err={login.error} handleSubmit={this.handleSubmit} />;
+    return (
+      <div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <LoginForm loggingIn={login.logging} err={login.error} handleSubmit={this.handleSubmit} />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+    );
   }
 }
 const mapStateToProps = state => ({
@@ -35,6 +50,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  userActions: bindActionCreators(userActions, dispatch),
+  userActions: bindActionCreators(userActions, dispatch)
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

@@ -17,10 +17,12 @@ import UserDashboard from './pages/UserDashboard';
 
 //Styles
 import './style/default.scss';
+import './style/index.css';
 import store, { history } from './redux/store';
 import { ConnectedRouter } from 'connected-react-router';
 import LoginChecker from './LoginChecker';
-
+import Nav from './components/layout/Nav';
+import NotFound from './NotFound';
 
 class App extends React.Component {
   render() {
@@ -28,11 +30,13 @@ class App extends React.Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
             <div className="App">
-              <Navbar/>
-              <div className="">
+              {/* <Header /> */}
+              <Navbar />
+              <Nav/>
+              <div style={{marginTop:"100px"}}>
               <Switch>
-                <Route exact path="/"   render={() =><LoginChecker><Homepage {...this.props}/></LoginChecker>}/>
-                <Route exact path="/aboutus"  render={() =><LoginChecker><AboutUs {...this.props}/></LoginChecker>} />
+                <Route exact path="/"   render={() =><LoginChecker {...this.props}><Homepage {...this.props}/></LoginChecker>}/>
+                <Route exact path="/aboutus"  render={() =><LoginChecker {...this.props}><AboutUs {...this.props}/></LoginChecker>} />
                 <Route exact path="/login"  component={Login} />
                 <Route exact path="/register"  component={Register}  />
                 <Route exact path="/contact"  render={() =><LoginChecker><Contact {...this.props}/></LoginChecker>} />
@@ -40,6 +44,7 @@ class App extends React.Component {
                 <Route exact path="/bookingpage"  render={() =><LoginChecker><Bookingpage {...this.props}/></LoginChecker>} />
                 <Route exact path="/futsalgrounds"  render={() =><LoginChecker><FutsalGround {...this.props}/></LoginChecker>} />
                 <Route exact path="/dashboard"  render={() =><LoginChecker><UserDashboard {...this.props}/></LoginChecker>} />
+                <Route path="*" component={NotFound} />
                 </Switch>
               </div>
             </div>
