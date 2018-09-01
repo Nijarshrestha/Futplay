@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Grid, Header, Segment, Button, Icon } from 'semantic-ui-react';
+import { Grid, Header, Segment, Button, Icon, Dimmer, Loader, Message, Label, Card } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { getFilteredBookings, getAvailability } from '../redux/actions/booking';
-// import * as actionCreator from './';
+import axios from 'axios';
+import { push } from 'react-router-redux';
 
 const square = { width: 175, height: 175, cursor: 'pointer' };
-
+const Tim = {
+  '1': '7 am - 9 am',
+  '2': '9 am - 11am',
+  '3': '11 am - 1 pm',
+  '5': ' 3 pm - 5pm',
+  '6': '5 pm - 7pm',
+  '4': '1 pm - 3 pm'
+};
 class BookPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: moment(), isOpen: false };
+    this.state = { date: moment(), isOpen: false, loading: false, bookmodal: false, error: '', t: '' };
     this.handleChange = this.handleChange.bind(this);
     this.getAvailability = this.getAvailability.bind(this);
+    this.bookGround = this.bookGround.bind(this);
   }
 
   handleChange(date) {
@@ -28,20 +37,34 @@ class BookPage extends Component {
 
   getAvailability() {
     const groundId = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
-    this.props.getAvailability(groundId, this.state.date);
+    this.props.getAvailability(groundId, this.state.date.format('DD-MM-YYYY'));
   }
   componentDidMount() {
     this.getAvailability();
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.location.pathname!==this.props.location.pathname) {
-    this.getAvailability();
+    if (newProps.location.pathname !== this.props.location.pathname) {
+      this.getAvailability();
     }
   }
 
-  bookGround() {
+  bookGround(timeframe) {
+    this.setState({ loading: true, error: '', t: timeframe });
+    const book = { userId: '', date: '', slots: '' };
+    book.slots = Number(timeframe);
+    book.userId = this.props.user._id;
+    book.date = this.state.date.format('DD-MM-YYYY');
 
+    const groundId = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
+    console.log(groundId, book);
+    const that = this;
+    axios({ method: 'post', url: `http://localhost:3000/api/booking/${groundId}`, data: book })
+      .then((response) => {
+        console.log('done');
+        that.setState({ bookmodal: true, loading: false });
+      })
+      .catch(err => that.setState({ loading: false, error: err.message }));
   }
 
   render() {
@@ -50,10 +73,57 @@ class BookPage extends Component {
     const currenthour = curr.getHours();
     const currday = moment();
     console.log(currenthour);
-    console.log('checcck',...{a:2},{});
+    console.log('checcck', ...{ a: 2 }, {});
     const { booking } = this.props;
+    const groundId = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
+
     return (
       <div>
+        {this.state.error && <Message negative>{this.state.error}</Message>}
+        <Dimmer active={this.state.loading}>
+          <Loader />
+        </Dimmer>
+        <Dimmer active={this.state.bookmodal}>
+          <Card.Group>
+            <Card raised style={{ left: '40%' }}>
+              <Icon
+                color="red"
+                inverted
+                size="medium"
+                name="cancel"
+                onClick={() => {
+                  this.setState({ bookmodal: false });
+                  this.getAvailability();
+                }}
+              />
+
+              <Card.Content>
+                <br />
+                <br />
+                <br />
+                <Header as="h2" color="teal">
+                  CONGRATULATIONS!!
+                </Header>
+                <br />
+
+                <Header as="h3">
+                  Your booking at {this.props.grounds[groundId] && this.props.grounds[groundId].name} is at for{' '}
+                  {this.state.date.format('DD-MM-YYYY')} between {Tim[this.state.t]}. Make sure you reach there in time!
+                </Header>
+                <br />
+                <Button
+                  onClick={() => {
+                    this.setState({ bookmodal: false });
+                    this.props.push('/dashboard');
+                  }}
+                  color="green"
+                >
+                  Oh Yeah!
+                </Button>
+              </Card.Content>
+            </Card>
+          </Card.Group>
+        </Dimmer>
         <Header as="h1" textAlign="center">
           Book Your Game Time
         </Header>
@@ -89,9 +159,10 @@ class BookPage extends Component {
               size="large"
               color={booking['1'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 7) || booking['1']
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 7) ||
+                booking['1']
               }
-              onClick={() => {}}
+              onClick={() => this.bookGround('1')}
             >
               7 am - 9 am
             </Button>
@@ -99,9 +170,10 @@ class BookPage extends Component {
               size="large"
               color={booking['2'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 9) || booking['2']
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 9) ||
+                booking['2']
               }
-              onClick={() => {}}
+              onClick={() => this.bookGround('2')}
             >
               9 am - 11am
             </Button>
@@ -112,9 +184,10 @@ class BookPage extends Component {
               size="large"
               color={booking['3'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 11) || booking['3']
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 11) ||
+                booking['3']
               }
-              onClick={() => {}}
+              onClick={() => this.bookGround('3')}
             >
               11 am - 1 pm
             </Button>
@@ -122,9 +195,10 @@ class BookPage extends Component {
               size="large"
               color={booking['4'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 13) || booking['4']
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 13) ||
+                booking['4']
               }
-              onClick={() => {}}
+              onClick={() => this.bookGround('4')}
             >
               1 pm - 3 pm
             </Button>
@@ -135,9 +209,10 @@ class BookPage extends Component {
               size="large"
               color={booking['5'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 15) || booking['5']
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 15) ||
+                booking['5']
               }
-              onClick={() => {}}
+              onClick={() => this.bookGround('5')}
             >
               3 pm - 5pm
             </Button>
@@ -145,9 +220,10 @@ class BookPage extends Component {
               size="large"
               color={booking['6'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 17) || booking['6']
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 17) ||
+                booking['6']
               }
-              onClick={() => {}}
+              onClick={() => this.bookGround('6')}
             >
               5 pm - 7pm
             </Button>
@@ -169,14 +245,16 @@ class BookPage extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     getFilteredBookings: bindActionCreators(getFilteredBookings, dispatch),
-    getAvailability: bindActionCreators(getAvailability, dispatch)
+    getAvailability: bindActionCreators(getAvailability, dispatch),
+    push: bindActionCreators(push, dispatch)
   };
 };
 
 const mapStateToProps = state => ({
   location: state.router.location,
   booking: state.booking.currentBooking,
-  user:state.userprofile.data
+  user: state.userprofile.data,
+  grounds: state.ground.ids
 });
 
 export default connect(
