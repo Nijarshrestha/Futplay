@@ -12,6 +12,16 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.mp4/,
+                use: {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 10000,
+                    mimtetype: 'video/mp4',
+                  }
+                }
+              },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
@@ -27,7 +37,8 @@ module.exports = {
             {
                 test: /\.(png|jpg|jpeg)$/, 
                 loader: 'url-loader?limit=8192'
-            }
+            },
+           
         ]
     },
 

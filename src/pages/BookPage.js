@@ -30,9 +30,19 @@ class BookPage extends Component {
     const groundId = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
     this.props.getAvailability(groundId, this.state.date);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.getAvailability();
+  }
 
-  componentWillReceiveProps(newProps) {}
+  componentWillReceiveProps(newProps) {
+    if(newProps.location.pathname!==this.props.location.pathname) {
+    this.getAvailability();
+    }
+  }
+
+  bookGround() {
+
+  }
 
   render() {
     console.log(this.props);
@@ -40,6 +50,7 @@ class BookPage extends Component {
     const currenthour = curr.getHours();
     const currday = moment();
     console.log(currenthour);
+    console.log('checcck',...{a:2},{});
     const { booking } = this.props;
     return (
       <div>
@@ -76,9 +87,9 @@ class BookPage extends Component {
             <Header as="h2">Available On</Header>
             <Button
               size="large"
-              color={booking[1] ? 'red' : ''}
+              color={booking['1'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 7) || booking[1]
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 7) || booking['1']
               }
               onClick={() => {}}
             >
@@ -86,9 +97,9 @@ class BookPage extends Component {
             </Button>
             <Button
               size="large"
-              color={booking[2] ? 'red' : ''}
+              color={booking['2'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 9) || booking[2]
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 9) || booking['2']
               }
               onClick={() => {}}
             >
@@ -99,9 +110,9 @@ class BookPage extends Component {
             <br />
             <Button
               size="large"
-              color={booking[3] ? 'red' : ''}
+              color={booking['3'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 11) || booking[3]
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 11) || booking['3']
               }
               onClick={() => {}}
             >
@@ -109,9 +120,9 @@ class BookPage extends Component {
             </Button>
             <Button
               size="large"
-              color={booking[4] ? 'red' : ''}
+              color={booking['4'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 13) || booking[4]
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 13) || booking['4']
               }
               onClick={() => {}}
             >
@@ -122,9 +133,9 @@ class BookPage extends Component {
             <br />
             <Button
               size="large"
-              color={booking[5] ? 'red' : ''}
+              color={booking['5'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 15) || booking[5]
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 15) || booking['5']
               }
               onClick={() => {}}
             >
@@ -132,9 +143,9 @@ class BookPage extends Component {
             </Button>
             <Button
               size="large"
-              color={booking[6] ? 'red' : ''}
+              color={booking['6'] ? 'red' : 'green'}
               disabled={
-                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 17) || booking[6]
+                (currday.format('DD-MM-YYYY') == this.state.date.format('DD-MM-YYYY') && currenthour > 17) || booking['6']
               }
               onClick={() => {}}
             >
@@ -164,7 +175,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => ({
   location: state.router.location,
-  booking: state.booking.currentBooking
+  booking: state.booking.currentBooking,
+  user:state.userprofile.data
 });
 
 export default connect(

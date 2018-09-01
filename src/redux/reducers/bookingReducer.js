@@ -50,7 +50,7 @@ export default function bookingReducer(state = initial_state, action) {
       return newState;
 
     case GET_CURRENT_BOOKING:
-      return { ...state.currentBooking, ...action.payload };
+      return { ...state,currentBooking:{...state.currentBooking, ...action.payload }};
     default:
       return state;
   }
