@@ -47,6 +47,7 @@ class Homepage extends Component {
           <br />
           <br />
         </div>
+        <div className="desktoponly"/>
       </div>
     );
   }
