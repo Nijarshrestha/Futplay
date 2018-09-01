@@ -24,7 +24,7 @@ class UserDashboard extends Component{
             
         }
         if(newProps.userloaded) {
-          this.props.getUserBookings(newProps.data._id);
+          // this.props.getUserBookings(newProps.data._id);
         }
       }
     
@@ -67,7 +67,7 @@ class UserDashboard extends Component{
               <Item>
 <Item.Content verticalAlign='middle'>
         <Item.Header>{idvalues[booking.groundId].name}</Item.Header>
-        <Item.Description>For- {booking.date}</Item.Description>
+        <Item.Description>For- {booking.date.replace(/d/g,'-')}</Item.Description>
         <Item.Extra>
           <Button floated='right' color="red" onClick={()=>{this.props.deleteBooking(booking._id,data._id)}}>Cancel</Button>
         </Item.Extra>
@@ -90,7 +90,8 @@ const mapStateToProps = state => ({
     bookinglist: state.booking.list,
     bookloading: state.booking.loading,
     bookerror: state.booking.error,
-    idvalues:state.ground.ids
+    idvalues:state.ground.ids,
+    userloaded: state.userprofile.loaded
   });
   
   const mapDispatchToProps = dispatch => ({

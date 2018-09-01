@@ -20,7 +20,7 @@ bookingRouter.post('/:groundId',(req,res)=>{
     newBooking.save()
     .then(()=> 
     ReservedGroundModel.findOne({groundId: req.params.groundId, date:req.body.date})
-    .then(reservedGround=> ReservedGroundModel.update({_id:reservedGround._id},{[req.body.slots]:true}))
+    .then(reservedGround=> ReservedGroundModel.update({_id:reservedGround._id},{[req.body.slots]:true}).then(()=>res.json({message:'success'})))
     .catch(()=>{
         const newreservedGround = new ReservedGroundModel({
             date: req.body.date,
@@ -42,7 +42,7 @@ bookingRouter.get('/:userId', (req,res)=>{
 })
 
 bookingRouter.get('/:groundId/:date',(req,res)=>{
-    Booking.findOne({groundId:req.params.groundId,date:req.params.date})
+    ReservedGroundModel.findOne({groundId:req.params.groundId,date:req.params.date})
         .then(Booking=>res.json(Booking))
         .catch(()=>{
             res.send({message: "no bookings on this date"})

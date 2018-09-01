@@ -32,7 +32,7 @@ class FutsalGround extends Component {
                     <Card.Content>
                       <Card.Header>{ground.name}</Card.Header>
                       <Card.Meta>
-                        <span className="date">{ground.address}</span>
+                        <span >{ground.address}</span>
                       </Card.Meta>
                       <Card.Description>
                         <Header as="h2">

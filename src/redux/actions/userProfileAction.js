@@ -11,8 +11,7 @@ export function getUserProfile(Username) {
        
       })
         .then(response => {
-            console.log('haosodhjhakshdfjas',response.data);
-           
+           console.log(response);
             if(response.data && response.data.data.length>0) {
                
                 dispatch({ type: userProfileConstrants.USER_PROFILE_SUCCESS, payload: response.data.data[0] });

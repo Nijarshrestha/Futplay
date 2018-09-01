@@ -32,20 +32,21 @@ class BookPage extends Component {
       isOpen: false
     });
 
-    this.getAvailability();
+    this.getAvailability(date);
   }
 
-  getAvailability() {
+  getAvailability(date) {
     const groundId = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
-    this.props.getAvailability(groundId, this.state.date.format('DD-MM-YYYY'));
+    const dat = date.format('DD-MM-YYYY').replace(/-/g,'d');
+    this.props.getAvailability(groundId,dat );
   }
   componentDidMount() {
-    this.getAvailability();
+    this.getAvailability(this.state.date);
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.location.pathname !== this.props.location.pathname) {
-      this.getAvailability();
+      this.getAvailability(this.state.date);
     }
   }
 
@@ -54,7 +55,8 @@ class BookPage extends Component {
     const book = { userId: '', date: '', slots: '' };
     book.slots = Number(timeframe);
     book.userId = this.props.user._id;
-    book.date = this.state.date.format('DD-MM-YYYY');
+    const dat = this.state.date.format('DD-MM-YYYY').replace(/-/g,'d');
+    book.date = dat;
 
     const groundId = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1);
     console.log(groundId, book);
@@ -93,7 +95,7 @@ class BookPage extends Component {
                 name="cancel"
                 onClick={() => {
                   this.setState({ bookmodal: false });
-                  this.getAvailability();
+                  this.getAvailability(this.state.date);
                 }}
               />
 
