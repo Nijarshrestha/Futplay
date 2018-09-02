@@ -9,7 +9,6 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Login from './components/auth/LoginContainer';
-import Register from './components/auth/Register';
 import App1 from './components/auth/app';
 import Bookingpage from './pages/Bookingpage';
 import FutsalGround from './pages/FutsalGrounds';
@@ -64,7 +63,6 @@ class App extends React.Component {
                   )}
                 />
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
                 <Route
                   exact
                   path="/contact"
@@ -121,12 +119,12 @@ class App extends React.Component {
                 />
                 <Route
                   exact
-                  path="/registerform" component= {RegisterForm}
-                  // render={() => (
-                  //   <LoginChecker>
-                  //     <BookPage {...this.props} />
-                  //   </LoginChecker>
-                  // )}
+                  path="/register" component= {RegisterForm}
+                  render={() => (
+                    <LoginChecker>
+                      <BookPage {...this.props} />
+                    </LoginChecker>
+                  )}
                 />
                 <Route path="*" component={NotFound} />
               </Switch>

@@ -13,12 +13,13 @@ class Homepage extends Component {
 
         <div className="fixcontent thin">
           <Container textAlign="justified" >
-            <Divider />
-            <h1>WELCOME TO FUTPLAY</h1>
+            {/* <Divider /> */}
+            <div className="homepage-main-container">
+            <h1 className="h1-font">WELCOME TO FUTPLAY</h1>
             <Divider />
 
-            <h2>OUR POWERFUL FUTSAL BOOKING SYSTEM HELPS YOU PLAY MORE</h2>
-            <p className="thin">
+            <h2 className="h2-font">OUR POWERFUL FUTSAL BOOKING SYSTEM HELPS YOU PLAY MORE</h2>
+            <p className="thin p-font">
               Welcome to Futplay. We are a growing global community of futsal enthuiast who are ambitious to make
               booking courts and slots as painless as possible. We are also committed to making communication between
               members and futsal courts simple and straightforward. The Futplay booking platform is a powerful booking
@@ -28,20 +29,18 @@ class Homepage extends Component {
               you think. We're here for you, your courts and your members.{' '}
             </p>
             <div style={{ position: 'fixed', width: '100%', height: ' 100%' }} />
+            </div>
           </Container>
           <Container textAlign="center">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+          
+           <div className="explore-ground-container">
             <Link to="/futsalgrounds">
               <Button color="black" basic inverted size="massive" icon labelPosition="right">
                 Explore Grounds
                 <Icon name="right chevron" />
               </Button>
             </Link>
+            </div>
           </Container>
           <br />
           <br />

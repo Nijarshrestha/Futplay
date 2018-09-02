@@ -5,7 +5,14 @@ import { bindActionCreators } from 'redux';
 import * as userProfileAction from '../redux/actions/userProfileAction';
 import { getUserBookings, deleteBooking } from '../redux/actions/booking';
 import moment from 'moment';
-
+const Tim = {
+  '1': '7 am - 9 am',
+  '2': '9 am - 11am',
+  '3': '11 am - 1 pm',
+  '5': ' 3 pm - 5pm',
+  '6': '5 pm - 7pm',
+  '4': '1 pm - 3 pm'
+};
 class UserDashboard extends Component {
   constructor(props) {
     super(props);
@@ -82,6 +89,7 @@ class UserDashboard extends Component {
                   <Table.HeaderCell>Futsal Ground Name</Table.HeaderCell>
                   <Table.HeaderCell>Date of Booking</Table.HeaderCell>
                   <Table.HeaderCell>Contact of Futsal Ground</Table.HeaderCell>
+                  <Table.HeaderCell>Time</Table.HeaderCell>
                   <Table.HeaderCell>UnReserve</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
@@ -94,6 +102,7 @@ class UserDashboard extends Component {
                         <Table.Cell>{idvalues[booking.groundId].name}</Table.Cell>
                         <Table.Cell>{booking.date.replace(/d/g, '-')}</Table.Cell>
                         <Table.Cell>{idvalues[booking.groundId].phone}</Table.Cell>
+                        <Table.Cell>{Tim[booking.slots]}</Table.Cell>
                         <Table.Cell>
                           <Button
                             floated="right"

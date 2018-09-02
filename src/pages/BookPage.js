@@ -52,9 +52,10 @@ class BookPage extends Component {
 
   bookGround(timeframe) {
     this.setState({ loading: true, error: '', t: timeframe });
-    const book = { userId: '', date: '', slots: '' };
+    const book = { userId: '',Username:'', date: '', slots: '' };
     book.slots = Number(timeframe);
     book.userId = this.props.user._id;
+    book.Username = this.props.user.Username;
     const dat = this.state.date.format('DD-MM-YYYY').replace(/-/g,'d');
     book.date = dat;
 
