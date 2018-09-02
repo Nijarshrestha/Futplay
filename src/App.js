@@ -14,6 +14,7 @@ import App1 from './components/auth/app';
 import Bookingpage from './pages/Bookingpage';
 import FutsalGround from './pages/FutsalGrounds';
 import UserDashboard from './pages/UserDashboard';
+import RegisterForm from './components/auth/RegisterForm';
 
 //Styles
 import './style/default.scss';
@@ -25,6 +26,7 @@ import Nav from './components/layout/Nav';
 import NotFound from './NotFound';
 import BookPage from './pages/BookPage';
 import { Container } from 'semantic-ui-react';
+
 
 class App extends React.Component {
   render() {
@@ -116,6 +118,15 @@ class App extends React.Component {
                       <BookPage {...this.props} />
                     </LoginChecker>
                   )}
+                />
+                <Route
+                  exact
+                  path="/registerform" component= {RegisterForm}
+                  // render={() => (
+                  //   <LoginChecker>
+                  //     <BookPage {...this.props} />
+                  //   </LoginChecker>
+                  // )}
                 />
                 <Route path="*" component={NotFound} />
               </Switch>
