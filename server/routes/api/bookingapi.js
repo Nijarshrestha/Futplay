@@ -51,12 +51,12 @@ bookingRouter.get('/:groundId/:date',(req,res)=>{
 
 bookingRouter.delete('/:bookingId',(req,res)=>{
     Booking.findById(req.params.bookingId)
-    .then(Booking=>
+    .then(book=>
         ReservedGroundModel.update({
-            groundId: Booking.groundId,
-            date: Booking.date,
-            [Booking.slots]: false
-        }))
-            .then(Booking.findByIdAndRemove(req.params.bookingId))
+            groundId: book.groundId,
+            date: book.date,
+            [book.slots]: false
+        })
+            .then(Booking.findByIdAndRemove(req.params.bookingId).then(()=>res.json({message:'success'}))))
 })
 module.exports = bookingRouter

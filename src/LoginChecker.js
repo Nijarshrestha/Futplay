@@ -5,17 +5,20 @@ import { bindActionCreators } from 'redux';
 import { checkLogin } from './redux/actions/userActions';
 import { push } from 'react-router-redux';
 import LoginContainer from './components/auth/LoginContainer';
-
+import {getAllGrounds} from './redux/actions/futsalGround';
 class LoginChecker extends Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.check = this.check.bind(this);
   }
+  
 
   componentDidMount() {
     this.check();
+      this.props.getAllGrounds();
   }
+  
 
   check() {
     this.props.check();
@@ -40,7 +43,8 @@ class LoginChecker extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     check: bindActionCreators(checkLogin, dispatch),
-    push: bindActionCreators(push, dispatch)
+    push: bindActionCreators(push, dispatch),
+    getAllGrounds: bindActionCreators(getAllGrounds,dispatch)
   };
 };
 

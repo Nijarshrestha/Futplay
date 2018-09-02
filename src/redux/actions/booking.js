@@ -11,7 +11,6 @@ export function getUserBookings(userId) {
   return dispatch => {
     dispatch({ type: GET_BOOKINGS_START });
 
-    console.log(data);
     axios({
       method: 'get',
       url: 'http://localhost:3000/api/booking/' + userId
