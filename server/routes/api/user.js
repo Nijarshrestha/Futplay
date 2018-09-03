@@ -22,7 +22,7 @@ router.post('/', (req, res)=>{
     const {Firstname, Lastname, Email, Phonenumber, Username, Password} = req.body.users
     const newUser = new User({
         Firstname,
-        Lastname,
+        Lastname,   
         Email,
         Phonenumber,
         Username,

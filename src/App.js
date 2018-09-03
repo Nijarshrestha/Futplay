@@ -14,6 +14,7 @@ import Bookingpage from './pages/Bookingpage';
 import FutsalGround from './pages/FutsalGrounds';
 import UserDashboard from './pages/UserDashboard';
 import RegisterForm from './components/auth/RegisterForm';
+import SendInvite from './pages/SendInvite';
 
 //Styles
 import './style/default.scss';
@@ -25,6 +26,7 @@ import Nav from './components/layout/Nav';
 import NotFound from './NotFound';
 import BookPage from './pages/BookPage';
 import { Container } from 'semantic-ui-react';
+
 
 
 class App extends React.Component {
@@ -105,6 +107,15 @@ class App extends React.Component {
                   render={() => (
                     <LoginChecker>
                       <UserDashboard {...this.props} />
+                    </LoginChecker>
+                  )}
+                />
+                <Route
+                  exact
+                  path="/sendinvite"
+                  render={() => (
+                    <LoginChecker>
+                      <SendInvite {...this.props} />
                     </LoginChecker>
                   )}
                 />
