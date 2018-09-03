@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Grid, Loader, Message, Card, Image, Icon, Header, Table, Button } from 'semantic-ui-react';
+import { Grid, Loader, Message, Card, Image, Icon, Header, Table, Button, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userProfileAction from '../redux/actions/userProfileAction';
 import { getUserBookings, deleteBooking } from '../redux/actions/booking';
 import moment from 'moment';
+import SendInvite from './SendInvite';
+import axios from 'axios';
+
+
 const Tim = {
   '1': '7 am - 9 am',
   '2': '9 am - 11am',
@@ -13,15 +17,28 @@ const Tim = {
   '6': '5 pm - 7pm',
   '4': '1 pm - 3 pm'
 };
+
 class UserDashboard extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      user: []
+  }
   }
   componentDidMount() {
     this.props.profileActions.getUserProfile(this.props.Username);
     if (this.props.data._id) {
       this.props.getUserBookings(this.props.data._id);
     }
+    axios.get('http://localhost:3000/api/user')
+    .then(res=>
+    {
+        if(res.data) {
+            // const d=[];
+            this.setState({user:res.data});
+            
+        }
+    })
   }
 
   componentWillReceiveProps(newProps) {
@@ -37,7 +54,8 @@ class UserDashboard extends Component {
   }
 
   render() {
-    const { loading, data, error, bookerror, bookinglist, bookloading, idvalues } = this.props;
+    const {user,loading, data, error, bookerror, bookinglist, bookloading, idvalues } = this.props;
+  
     return (
       <Grid padded>
         <Grid.Column mobile={16} computer={4}>
@@ -91,6 +109,7 @@ class UserDashboard extends Component {
                   <Table.HeaderCell>Contact of Futsal Ground</Table.HeaderCell>
                   <Table.HeaderCell>Time</Table.HeaderCell>
                   <Table.HeaderCell>UnReserve</Table.HeaderCell>
+                  <Table.HeaderCell>Invitation</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -114,6 +133,49 @@ class UserDashboard extends Component {
                           >
                             UnReserve
                           </Button>
+                        </Table.Cell>
+                        <Table.Cell>
+                          <Modal trigger={<Button color="green">Invite</Button>}>
+                            <Modal.Header>Send Invitation</Modal.Header>
+                            <Modal.Content>
+                            <div style={{ height: '60vh', overflowY: 'scroll' }}>
+                            <Table celled stackable>
+                                <Table.Header>
+                                  <Table.Row>
+                                    <Table.HeaderCell>Name</Table.HeaderCell>
+                                    <Table.HeaderCell>Email</Table.HeaderCell>
+                                    <Table.HeaderCell>Contact Number</Table.HeaderCell>
+                                    <Table.HeaderCell>Send Invites</Table.HeaderCell>
+                                  </Table.Row>
+                                </Table.Header>
+
+                                <Table.Body>
+                                  {this.state.user.length>0&&
+                                    this.state.user.map(user => {
+                                      return (
+                                        <Table.Row key={user._id}>
+                                          <Table.Cell>{user.Firstname } {user.Lastname}</Table.Cell>
+                                          <Table.Cell>{user.Email}</Table.Cell>
+                                          <Table.Cell>{user.Phonenumber}</Table.Cell>
+                                          <Table.Cell>
+                                            <Button
+                                              floated="right"
+                                              color="yellow"
+                                              onClick={() => {
+                                              //   this.props.deleteBooking(booking._id, data._id);
+                                              }}
+                                            >
+                                              Invite
+                                            </Button>
+                                          </Table.Cell>
+                                        </Table.Row>
+                                      );
+                                    })}
+                                </Table.Body>
+                              </Table>
+                              </div>
+                            </Modal.Content>
+                          </Modal>
                         </Table.Cell>
                       </Table.Row>
                     );

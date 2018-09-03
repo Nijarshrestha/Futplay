@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import Navbar from './components/layout/Navbar';
 import Homepage from './pages/Homepage';
 import AboutUs from './pages/AboutUs';
-import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Login from './components/auth/LoginContainer';
@@ -15,6 +14,7 @@ import FutsalGround from './pages/FutsalGrounds';
 import UserDashboard from './pages/UserDashboard';
 import RegisterForm from './components/auth/RegisterForm';
 import SendInvite from './pages/SendInvite';
+import ContactUs from './pages/Contact';
 
 //Styles
 import './style/default.scss';
@@ -26,6 +26,7 @@ import Nav from './components/layout/Nav';
 import NotFound from './NotFound';
 import BookPage from './pages/BookPage';
 import { Container } from 'semantic-ui-react';
+
 
 
 
@@ -70,7 +71,7 @@ class App extends React.Component {
                   path="/contact"
                   render={() => (
                     <LoginChecker>
-                      <Contact {...this.props} />
+                      <ContactUs {...this.props} />
                     </LoginChecker>
                   )}
                 />
