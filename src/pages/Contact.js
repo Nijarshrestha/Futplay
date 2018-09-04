@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Grid, Container, Form, Button, Header} from 'semantic-ui-react';
+import {Grid, Container, Form, Button, Header,TextArea} from 'semantic-ui-react';
 
 class ContactUs extends Component{
   render(){
@@ -26,9 +26,10 @@ class ContactUs extends Component{
                   <input placeholder='Enter your Email Address' />
                 </Form.Field>
                 <label>Message</label>
-                <Form.TextArea>
-                  
-                </Form.TextArea>
+                <Form>
+                  <TextArea placeholder='Tell us more' />
+                </Form>
+                <br/>
                 <Button color="green" type='submit'>Submit</Button>
               </Form>
             </Grid.Column>
@@ -50,7 +51,9 @@ class ContactUs extends Component{
             </Grid.Column>
           </Grid>
         </Container>
+        <br/>
       </div>
+      
     )
   }
 }

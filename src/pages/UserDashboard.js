@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as userProfileAction from '../redux/actions/userProfileAction';
 import { getUserBookings, deleteBooking } from '../redux/actions/booking';
 import moment from 'moment';
-import SendInvite from './SendInvite';
 import axios from 'axios';
 
 
@@ -109,7 +108,7 @@ class UserDashboard extends Component {
                   <Table.HeaderCell>Contact of Futsal Ground</Table.HeaderCell>
                   <Table.HeaderCell>Time</Table.HeaderCell>
                   <Table.HeaderCell>UnReserve</Table.HeaderCell>
-                  <Table.HeaderCell>Invitation</Table.HeaderCell>
+                  <Table.HeaderCell>Invite Players</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
 
@@ -135,10 +134,10 @@ class UserDashboard extends Component {
                           </Button>
                         </Table.Cell>
                         <Table.Cell>
-                          <Modal trigger={<Button color="green">Invite</Button>}>
+                          <Modal className="modal-position" trigger={<Button color="green">Invite</Button>}>
                             <Modal.Header>Send Invitation</Modal.Header>
                             <Modal.Content>
-                            <div style={{ height: '60vh', overflowY: 'scroll' }}>
+                            <div style={{ height: '70vh', overflowY: 'scroll' }}>
                             <Table celled stackable>
                                 <Table.Header>
                                   <Table.Row>
@@ -162,7 +161,7 @@ class UserDashboard extends Component {
                                               floated="right"
                                               color="yellow"
                                               onClick={() => {
-                                              //   this.props.deleteBooking(booking._id, data._id);
+
                                               }}
                                             >
                                               Invite

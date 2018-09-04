@@ -13,8 +13,8 @@ import Bookingpage from './pages/Bookingpage';
 import FutsalGround from './pages/FutsalGrounds';
 import UserDashboard from './pages/UserDashboard';
 import RegisterForm from './components/auth/RegisterForm';
-import SendInvite from './pages/SendInvite';
 import ContactUs from './pages/Contact';
+
 
 //Styles
 import './style/default.scss';
@@ -108,15 +108,6 @@ class App extends React.Component {
                   render={() => (
                     <LoginChecker>
                       <UserDashboard {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/sendinvite"
-                  render={() => (
-                    <LoginChecker>
-                      <SendInvite {...this.props} />
                     </LoginChecker>
                   )}
                 />

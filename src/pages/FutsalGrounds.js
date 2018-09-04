@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image, Container, Header, Loader, Message,Button } from 'semantic-ui-react';
+import { Card, Icon, Image, Container, Header, Loader, Message,Button,Rating } from 'semantic-ui-react';
 import { getAllGrounds } from '../redux/actions/futsalGround';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -41,6 +41,7 @@ class FutsalGround extends Component {
                         <Header as="h2">
                           <Icon name="mail" />{ground.email}
                         </Header>
+                        <Rating icon='star' defaultRating={3} maxRating={4} />
                       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>

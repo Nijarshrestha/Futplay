@@ -43,10 +43,10 @@
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
     "react-router-redux": "^5.0.0-alpha.9",
+    "semantic-ui-css": "2.2.12",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-css": "^2.2.14",
     "transform-runtime": "0.0.0"
   },
   "devDependencies": {
@@ -70,7 +70,7 @@
     "react-social-icons": "^3.0.0",
     "reactstrap": "^6.4.0",
     "sass-loader": "^7.1.0",
-    "semantic-ui-react": "^0.82.2",
+    "semantic-ui-react": "0.78.2",
     "style-loader": "^0.21.0",
     "url-loader": "^1.1.1",
     "webpack": "^4.15.1",
