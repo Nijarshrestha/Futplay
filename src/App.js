@@ -15,7 +15,6 @@ import UserDashboard from './pages/UserDashboard';
 import RegisterForm from './components/auth/RegisterForm';
 import ContactUs from './pages/Contact';
 
-
 //Styles
 import './style/default.scss';
 import './style/index.css';
@@ -26,14 +25,14 @@ import Nav from './components/layout/Nav';
 import NotFound from './NotFound';
 import BookPage from './pages/BookPage';
 import { Container } from 'semantic-ui-react';
-
-
+import Invitation from './components/invitation';
 
 
 class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
+      <div>
         <ConnectedRouter history={history}>
           <div className="App ">
             {/* <Header /> */}
@@ -131,10 +130,13 @@ class App extends React.Component {
                 />
                 <Route path="*" component={NotFound} />
               </Switch>
+
             </div>
+            <Invitation/>
             <Footer />
           </div>
         </ConnectedRouter>
+            </div>
       </Provider>
     );
   }

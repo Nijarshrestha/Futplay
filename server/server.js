@@ -12,7 +12,7 @@ const usersession = require('./routes/api/usersession');
 const bookinglists = require('./routes/api/bookinglists');
 const grounds = require('./routes/api/groundapi');
 const bookingapi = require('./routes/api/bookingapi');
-
+const invitationapi = require('./routes/api/invitationapi')
 /*****Body parser is used as middleware in express to handle post request*****/
 
 app.use(bodyParser.json());
@@ -43,7 +43,7 @@ app.use('/api/login',usersession);
 app.use('/api/bookinglists',bookinglists);
 app.use('/api/grounds',grounds);
 app.use('/api/booking',bookingapi)
-
+app.use('api/invite',invitationapi)
 
 // app.get('/api/customers', (request,response)=>{
 //     const customers =[

@@ -42,10 +42,10 @@ class Nav extends Component{
       </Container>
     </Menu>
     <Confirm open={this.state.logoutmodalopen}
-        basic
-        size="mini"
-       header='Are you sure you want to log out?'
-       content=''
+        
+        size="large"
+       header='Leaving ?'
+       content='Are you sure you want to log out?'
         onCancel={() => this.setState({ logoutmodalopen: false })}
          onConfirm={() => { this.setState({ logoutmodalopen: false }); this.logOut() }} />
     </div>)

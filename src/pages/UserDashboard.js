@@ -21,7 +21,10 @@ class UserDashboard extends Component {
   constructor(props) {
     super(props);
     this.state={
-      user: []
+      user: [],
+      invitation:[
+       
+      ],
   }
   }
   componentDidMount() {
@@ -42,10 +45,10 @@ class UserDashboard extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.Username !== null && newProps.Username !== this.props.Username) {
-      this.props.profileActions.getUserProfile(this.props.Username);
+      this.props.profileActions.getUserProfile(newProps.Username);
     }
     if (newProps.Username && !newProps.data.Username) {
-      this.props.profileActions.getUserProfile(this.props.Username);
+      this.props.profileActions.getUserProfile(newProps.Username);
     }
     if (newProps.userloaded !== this.props.userloaded && newProps.userloaded) {
       this.props.getUserBookings(newProps.data._id);
@@ -91,7 +94,7 @@ class UserDashboard extends Component {
               <Card.Content extra />
             </Card>
           )}
-          {error && <Message negative>{error}</Message>}
+          {error && <Message negative></Message>}
         </Grid.Column>
         <Grid.Column mobile={16} computer={10}>
           <Header as="h1" color="grey">
@@ -107,7 +110,7 @@ class UserDashboard extends Component {
                   <Table.HeaderCell>Date of Booking</Table.HeaderCell>
                   <Table.HeaderCell>Contact of Futsal Ground</Table.HeaderCell>
                   <Table.HeaderCell>Time</Table.HeaderCell>
-                  <Table.HeaderCell>UnReserve</Table.HeaderCell>
+                  <Table.HeaderCell>Cancel Reservation</Table.HeaderCell>
                   <Table.HeaderCell>Invite Players</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
@@ -157,15 +160,18 @@ class UserDashboard extends Component {
                                           <Table.Cell>{user.Email}</Table.Cell>
                                           <Table.Cell>{user.Phonenumber}</Table.Cell>
                                           <Table.Cell>
-                                            <Button
-                                              floated="right"
-                                              color="yellow"
-                                              onClick={() => {
-
-                                              }}
-                                            >
-                                              Invite
-                                            </Button>
+                                                <Modal className="modal-position" trigger={<Button color="green">Invite</Button>} >
+                                                  <Modal.Header>
+                                                    Send Invites
+                                                  </Modal.Header>
+                                                  <Modal.Content>
+                                                    Send Invite to {user.Firstname} {user.Lastname} for a match at {idvalues[booking.groundId].name} on {booking.date.replace(/d/g, '-')} from {Tim[booking.slots]}.
+                                                  </Modal.Content>
+                                                  <Modal.Actions>
+                                                    <Button color="green" onClick={()=>{}}>Send</Button>
+                                                    <Button color="red" onClick={()=>{}}>Cancel</Button>
+                                                  </Modal.Actions>
+                                                </Modal>
                                           </Table.Cell>
                                         </Table.Row>
                                       );

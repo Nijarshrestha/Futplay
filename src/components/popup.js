@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button,Modal,ModalHeader,ModalBody,ModalFooter} from 'reactstrap'
+import {Button,Modal} from 'semantic-ui-react'
 
 class PopUp extends Component{
     constructor(props){
@@ -28,16 +28,16 @@ class PopUp extends Component{
     render(){
         return(
             <div>
-               <Button color={this.state.isToggleReserved?"success":'warning'} onClick={this.modalToggle}>{this.state.isToggleReserved?'Reserve':'UnReserve'}{this.props.buttonLabel}</Button>
+               <Button color={this.state.isToggleReserved?"green":'yellow'} onClick={this.modalToggle}>{this.state.isToggleReserved?'Reserve':'UnReserve'}{this.props.buttonLabel}</Button>
                <Modal isOpen={this.state.modal} toggle={this.modalToggle} className={this.props.className}>
-                    <ModalHeader toggle={this.modalToggle}>Confirmation ?</ModalHeader>
-                        <ModalBody>
+                    <Modal.Header toggle={this.modalToggle}>Confirmation ?</Modal.Header>
+                        <Modal.Description>
                             Book futsal ground {/*futsal ground props*/} at this time {/*time props*/} 
-                        </ModalBody>
-                    <ModalFooter>
-                        <Button color="success" onClick={()=>{this.modalToggle();this.setState({isToggleReserved:!this.state.isToggleReserved})}}> Confirm</Button>{''}
-                        <Button color ="danger" onClick={()=>{this.modalToggle()}}> Cancel</Button>
-                    </ModalFooter>
+                        </Modal.Description>
+                    <Modal.Action>
+                        <Button color="green" onClick={()=>{this.modalToggle();this.setState({isToggleReserved:!this.state.isToggleReserved})}}> Confirm</Button>{''}
+                        <Button color ="red" onClick={()=>{this.modalToggle()}}> Cancel</Button>
+                    </Modal.Action>
                 </Modal>
             </div>
         )
