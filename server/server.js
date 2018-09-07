@@ -43,7 +43,7 @@ app.use('/api/login',usersession);
 app.use('/api/bookinglists',bookinglists);
 app.use('/api/grounds',grounds);
 app.use('/api/booking',bookingapi)
-app.use('api/invite',invitationapi)
+app.use('/api/invite',invitationapi)
 
 // app.get('/api/customers', (request,response)=>{
 //     const customers =[

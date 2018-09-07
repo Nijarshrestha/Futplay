@@ -250,11 +250,11 @@ html,body {
 	float:right;
 
 }
-/* 
+
 .invitation-component {
 	position:fixed;
 
 	margin-right:0px;
-	margin-bottom: 0px;
-	z-index: 10000000;
-} */
+	margin-top: 0px;
+	/* z-index: 10000000; */
+}

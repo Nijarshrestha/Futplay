@@ -10,6 +10,7 @@ invitationRouter.post('/',(req,res)=>{
     const newInvitation = new Invitation({
         senderId: req.body.senderId,
         recieverId: req.body.recieverId,
+        senderName:req.body.senderName,
         date: req.body.date,
         slots: req.body.slots,
         groundname: req.body.groundname

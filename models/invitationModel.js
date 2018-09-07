@@ -10,13 +10,14 @@ const InvitationSchema = new Schema ({
 
     recieverId: {
         type:Schema.Types.ObjectId,
-        ref:'User',
-        require: true
+        ref:'User'
     },
     groundname: {
         type:String
     },
-    
+    senderName: {
+        type: String
+    },
     date:{
         type: String
     },

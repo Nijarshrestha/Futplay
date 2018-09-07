@@ -29,7 +29,8 @@ class Invitation extends Component {
         }
     }
     render() {
-        return (<div className="invitation-component">
+        return (
+        <div className="invitation-component">
             <Segment circular style={square} onClick={() => this.toggleModal()} className="invitation-button">
                 {!this.state.modalOpen && <Header as='h4'>
                      <Label color="red">{this.props.invitation.length}</Label>
@@ -43,7 +44,8 @@ class Invitation extends Component {
                 {invite.senderID} has invited you to play at {invite.groundname} at {invite.slots} on {invite.date.replace(/d/g, '-')}</Header>})}
 
             </Popup>
-        </div>)
+        </div>
+        )
 
     }
 }

@@ -25,7 +25,7 @@ import Nav from './components/layout/Nav';
 import NotFound from './NotFound';
 import BookPage from './pages/BookPage';
 import { Container } from 'semantic-ui-react';
-import Invitation from './components/invitation';
+// import Invitation from './components/invitation';
 
 
 class App extends React.Component {
@@ -34,6 +34,7 @@ class App extends React.Component {
       <Provider store={store}>
       <div>
         <ConnectedRouter history={history}>
+        
           <div className="App ">
             {/* <Header /> */}
             <Navbar />
@@ -130,9 +131,7 @@ class App extends React.Component {
                 />
                 <Route path="*" component={NotFound} />
               </Switch>
-
-            </div>
-            <Invitation/>
+            </div> 
             <Footer />
           </div>
         </ConnectedRouter>
