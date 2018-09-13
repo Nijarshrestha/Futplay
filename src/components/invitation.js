@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Popup, Segment,Header, Label, Icon } from 'semantic-ui-react';
+import { Popup, Segment,Header,Message, Label,Card, Icon } from 'semantic-ui-react';
 import {getInvitations} from '../redux/actions/invitation';
 
 const square = { width: 50, height: 50 }
@@ -31,19 +31,32 @@ class Invitation extends Component {
     render() {
         return (
         <div className="invitation-component">
-            <Segment circular style={square} onClick={() => this.toggleModal()} className="invitation-button">
-                {!this.state.modalOpen && <Header as='h4'>
+        <div className="invitation-button">
+        {!this.props.loggedIn && 
+        <Popup trigger={<Icon name="question" size="huge" color="grey"/>} content='Oops, youre not logged in !' />}
+        {!this.state.modalOpen && this.props.loggedIn &&
+        <span  onClick={() => this.toggleModal()}>
+        <Icon name='mail' color="grey" size="big"/>
+        <Label color="red" floating >{this.props.invitation.length}</Label>
+      </span>}
+      {this.state.modalOpen && <Icon name="close" color="red" size="big" onClick={() => this.toggleModal()}/>}
+            {/* <Segment circular style={square} >
+                {!this.state.modalOpen && 
                      <Label color="red">{this.props.invitation.length}</Label>
-                </Header>}
-                {this.state.modalOpen && <Icon name="close" />}
-            </Segment>
-            <Popup open={this.state.modalOpen}  position='top right'>
+                }
+               <span className="invitation-button"> {this.state.modalOpen && <Icon name='mail' color="teal" size='huge' />}
+               </span>
+                
+            </Segment> */}
+            </div>
+            {this.state.modalOpen && <div className="invitation-content">
+            {this.props.loggedIn &&  <div className="invite-msg-container">
                 {this.props.invitation.length > 0 &&
                      this.props.invitation.map(invite =>{
-                         return <Header as="h3" color="teal" key={invite._id}>
-                {invite.senderID} has invited you to play at {invite.groundname} at {invite.slots} on {invite.date.replace(/d/g, '-')}</Header>})}
-
-            </Popup>
+                         return <Message color="twitter" size="mini" compact key={invite._id}>
+                {invite.senderName} has invited you to play at {invite.groundname} from {invite.slots} on {invite.date.replace(/d/g, '-')}</Message>})}
+</div>}
+            </div>}
         </div>
         )
 
@@ -58,7 +71,8 @@ const mapDispatchToProps = dispatch => {
 };
 const mapStateToProps = state => ({
     invitation: state.invites.invitation,
-    userprofile: state.userprofile.data
+    userprofile: state.userprofile.data,
+    loggedIn : state.login.loggedIn
 });
 
 export default connect(

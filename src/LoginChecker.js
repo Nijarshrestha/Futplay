@@ -28,6 +28,9 @@ class LoginChecker extends Component {
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.check();
     }
+    if(newProps.location.pathname=='/login' && newProps.loggedIn) {
+      this.props.push('/');
+    }
   }
 
   render() {

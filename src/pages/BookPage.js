@@ -110,7 +110,7 @@ class BookPage extends Component {
                 <br />
 
                 <Header as="h3">
-                  Your booking at {this.props.grounds[groundId] && this.props.grounds[groundId].name} is at for{' '}
+                  Your booking at {this.props.grounds[groundId] && this.props.grounds[groundId].name} is at {' '}
                   {this.state.date.format('DD-MM-YYYY')} between {Tim[this.state.t]}. Make sure you reach there in time!
                 </Header>
                 <br />

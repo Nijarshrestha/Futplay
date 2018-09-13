@@ -18,11 +18,8 @@ class Nav extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.Username && newProps.Username!= this.props.Username){
+    if (newProps.Username && newProps.Username != this.props.Username) {
       this.props.getUserProfile(newProps.Username);
-    }
-    if(newProps.profile.loaded && newProps.profile._id!==this.props.profile.id) {
-      this.props.getInvites(newProps.profile._id);
     }
   }
 
@@ -49,18 +46,7 @@ class Nav extends Component {
 
             </Dropdown.Menu>
           </Dropdown>
-          <Dropdown item icon="bell">
-
-            <Dropdown.Menu>
-              {this.props.myInvites && this.props.myInvites.map(invitation => {
-                return
-                <Dropdown.Item>
-
-                  {invitation.senderName} has invited you to play at {invitation.groundname} from {invitation.slots} on {invitation.date.replace(/d/g, '-')}
-                </Dropdown.Item>
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
+        
 
         </Container>
       </Menu>
@@ -80,8 +66,8 @@ const mapDispatchToProps = dispatch => {
 
     userlogout: bindActionCreators(userlogout, dispatch),
     push: bindActionCreators(push, dispatch),
-    getUserProfile: bindActionCreators(getUserProfile,dispatch),
-    getInvites: bindActionCreators(getInvitations,dispatch)
+    getUserProfile: bindActionCreators(getUserProfile, dispatch),
+    getInvites: bindActionCreators(getInvitations, dispatch)
 
   };
 };
@@ -89,7 +75,7 @@ const mapStateToProps = state => ({
   loggedIn: state.login.loggedIn,
   myInvites: state.invites.invitation,
   Username: state.login.Username,
-  profile: state.userprofile.data
+  profile: state.userprofile
 });
 
 export default connect(

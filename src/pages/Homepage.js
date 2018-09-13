@@ -6,7 +6,7 @@ class Homepage extends Component {
   render() {
     return (
       <div className="homepage-main-container">
-        <div style={{ zIndex: '100000' }}>
+        <div style={{ zIndex: '1000' }}>
           <video autoPlay muted loop id="myVideo">
             <source src={require('../images/vid.mp4')} type="video/mp4" />
             Your browser does not support HTML5 video.

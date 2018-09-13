@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as userProfileConstrants from "./../constants/userProfileConstrants";
+import {getInvitations} from './invitation';
 
 export function getUserProfile(Username) {
     return dispatch => {
@@ -15,6 +16,7 @@ export function getUserProfile(Username) {
             if(response.data && response.data.data.length>0) {
                
                 dispatch({ type: userProfileConstrants.USER_PROFILE_SUCCESS, payload: response.data.data[0] });
+                dispatch(getInvitations(response.data.data[0]._id));
             }
         })
         .catch(err => {

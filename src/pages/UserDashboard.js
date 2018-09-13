@@ -22,10 +22,11 @@ class UserDashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sendInviteModalOpen: true,
+      sendInviteModalOpen: false,
       userListModal: false,
       user: [],
-      invitedList: []
+      invitedList: [],
+      current:{user:{},booking:{},index:''}
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,17 +47,20 @@ class UserDashboard extends Component {
       })
   }
 
-  handleSubmit(userId, booking, index) {
+  handleSubmit() {
     // const invitation = {
 
     // }
+    const userId = this.state.current.user._id;
+    const booking= this.state.current.booking;
+    const index = this.state.current.index;
     axios({
       method: 'post',
       url: 'http://localhost:3000/api/invite',
       data: {
         senderId: this.props.data._id,
-        senderName: this.props.data.Firstname+ this.props.data.Lastname,
-        recieverId: this.props.userId,
+        senderName: this.props.data.Firstname +' '+ this.props.data.Lastname,
+        recieverId: userId,
         groundname: this.props.idvalues[booking.groundId].name,
         date: booking.date.replace(/d/g, '-'),
         slots: Tim[booking.slots]
@@ -67,9 +71,9 @@ class UserDashboard extends Component {
         if (res.data) {
           console.log("Invitation sent");
           console.log(this.props);
-          let {invitedList}=this.state;
+          let { invitedList } = this.state;
           invitedList.push(index);
-          this.setState({invitedList:invitedList,userListModal: false});
+          this.setState({ invitedList: invitedList, sendInviteModalOpen: false });
         }
         else {
           console.log('error')
@@ -81,8 +85,8 @@ class UserDashboard extends Component {
     if (newProps.Username !== null && newProps.Username !== this.props.Username) {
       this.props.profileActions.getUserProfile(newProps.Username);
     }
-    if (newProps.Username && !newProps.data.Username) {
-      this.props.profileActions.getUserProfile(newProps.Username);
+    if (newProps.Username && !newProps.userloaded && newProps.userloaded != this.props.userloaded) {
+      // this.props.profileActions.getUserProfile(newProps.Username);
     }
     if (newProps.userloaded !== this.props.userloaded && newProps.userloaded) {
       this.props.getUserBookings(newProps.data._id);
@@ -91,7 +95,7 @@ class UserDashboard extends Component {
 
   render() {
     const { user, loading, data, error, bookerror, bookinglist, bookloading, idvalues } = this.props;
- console.log(this.state.invitedList)
+    console.log(this.state.invitedList)
     return (
       <Grid padded>
         <Grid.Column mobile={16} computer={4}>
@@ -170,8 +174,8 @@ class UserDashboard extends Component {
                           </Button>
                         </Table.Cell>
                         <Table.Cell>
-                          <Button color="green" onClick={() => this.setState({ userListModal: true })}>Invite Players</Button>
-                          <Modal className="modal-position" open={this.state.userListModal} onClose={()=>this.setState({userListModal:false})}>
+                          <Button color="green" onClick={() => this.setState({ userListModal: true,invitedList:[] })}>Invite Players</Button>
+                          <Modal className="modal-position" open={this.state.userListModal} onClose={() => this.setState({ userListModal: false })}>
                             <Modal.Header>Send Invitation</Modal.Header>
                             <Modal.Content>
                               <div style={{ height: '70vh', overflowY: 'scroll' }}>
@@ -194,19 +198,9 @@ class UserDashboard extends Component {
                                             <Table.Cell>{user.Email}</Table.Cell>
                                             <Table.Cell>{user.Phonenumber}</Table.Cell>
                                             <Table.Cell>
-                                              {this.state.invitedList.indexOf(idx)==-1&&<Modal className="modal-position" trigger={<Button color="green">Invite</Button>} >
-                                                <Modal.Header>
-                                                  Send Invites
-                                                  </Modal.Header>
-                                                <Modal.Content>
-                                                  Send Invite to {user.Firstname} {user.Lastname} for a match at {idvalues[booking.groundId].name} on {booking.date.replace(/d/g, '-')} from {Tim[booking.slots]}.
-                                                  </Modal.Content>
-                                                <Modal.Actions open={this.state.sendInviteModalOpen}>
-                                                  <Button type="submit" onClick={() => this.handleSubmit(user._id, booking, idx)} color="green">Send</Button>
-                                                  <Button color="red" onClick={() => { }}>Cancel</Button>
-                                                </Modal.Actions>
-                                              </Modal>}
-                                              {this.state.invitedList.indexOf(idx)>-1 && <Icon name="check" color="green" disabled/>}
+                                              {this.state.invitedList.indexOf(idx) == -1 && <Button color="green" icon="send" onClick={() => this.setState({ current: { user: user, booking: booking, index: idx }, sendInviteModalOpen: true })} />
+                                              }
+                                              {this.state.invitedList.indexOf(idx) > -1 && <Icon name="check" color="green" disabled />}
                                             </Table.Cell>
                                           </Table.Row>
                                         );
@@ -224,6 +218,18 @@ class UserDashboard extends Component {
             </Table>
           </div>
           {error && <Message negative>{bookerror}</Message>}
+          <Modal className="modal-position" open={this.state.sendInviteModalOpen}>
+            <Modal.Header>
+              Send Invites
+                                                  </Modal.Header>
+            {this.state.current.user._id && this.state.current.booking._id &&<Modal.Content>
+              Send Invite to {this.state.current.user.Firstname} {this.state.current.user.Lastname} for a match at {idvalues[this.state.current.booking.groundId].name} on {this.state.current.booking.date.replace(/d/g, '-')} from {Tim[this.state.current.booking.slots]}.
+                                                  </Modal.Content>}
+            <Modal.Actions>
+              <Button type="submit" onClick={() => this.handleSubmit()} color="green">Send</Button>
+              <Button color="red" onClick={() => { this.setState({ sendInviteModalOpen: false }) }}>Cancel</Button>
+            </Modal.Actions>
+          </Modal>
         </Grid.Column>
       </Grid>
     );

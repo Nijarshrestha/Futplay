@@ -25,117 +25,121 @@ import Nav from './components/layout/Nav';
 import NotFound from './NotFound';
 import BookPage from './pages/BookPage';
 import { Container } from 'semantic-ui-react';
-// import Invitation from './components/invitation';
+import Invitation from './components/invitation';
 
 
 class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-      <div>
-        <ConnectedRouter history={history}>
-        
-          <div className="App ">
-            {/* <Header /> */}
-            <Navbar />
-            <Nav />
-            <div className="home-grad">
-              <Container>
-                <br />
-                <br />
-                <br />
-                <br />
-              </Container>
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={() => (
-                    <LoginChecker {...this.props}>
-                      <Homepage {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/aboutus"
-                  render={() => (
-                    <LoginChecker {...this.props}>
-                      <AboutUs {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route exact path="/login" component={Login} />
-                <Route
-                  exact
-                  path="/contact"
-                  render={() => (
-                    <LoginChecker>
-                      <ContactUs {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/test"
-                  render={() => (
-                    <LoginChecker>
-                      <App1 {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/bookingpage"
-                  render={() => (
-                    <LoginChecker>
-                      <Bookingpage {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/futsalgrounds"
-                  render={() => (
-                    <LoginChecker>
-                      <FutsalGround {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/dashboard"
-                  render={() => (
-                    <LoginChecker>
-                      <UserDashboard {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/booking/:groundId"
-                  render={() => (
-                    <LoginChecker>
-                      <BookPage {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/register" component= {RegisterForm}
-                  render={() => (
-                    <LoginChecker>
-                      <BookPage {...this.props} />
-                    </LoginChecker>
-                  )}
-                />
-                <Route path="*" component={NotFound} />
-              </Switch>
-            </div> 
-            <Footer />
-          </div>
-        </ConnectedRouter>
+        <div>
+          <ConnectedRouter history={history}>
+
+            <div className=" ">
+              {/* <Header /> */}
+              <Navbar />
+              <Nav />
+              <div className="home-grad">
+                <Invitation />
+
+                <Container>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
+                </Container>
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    render={() => (
+                      <LoginChecker {...this.props}>
+                        <Homepage {...this.props} />
+                      </LoginChecker>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/aboutus"
+                    render={() => (
+                      <LoginChecker {...this.props}>
+                        <AboutUs {...this.props} />
+                      </LoginChecker>
+                    )}
+                  />
+                  <Route exact path="/login"  render={() => (
+                      <LoginChecker>
+                        <Login {...this.props} />
+                      </LoginChecker>
+                    )}/>
+                  <Route
+                    exact
+                    path="/contact"
+                    render={() => (
+                      <LoginChecker>
+                        <ContactUs {...this.props} />
+                      </LoginChecker>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/test"
+                    render={() => (
+                      <LoginChecker>
+                        <App1 {...this.props} />
+                      </LoginChecker>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/bookingpage"
+                    render={() => (
+                      <LoginChecker>
+                        <Bookingpage {...this.props} />
+                      </LoginChecker>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/futsalgrounds"
+                    render={() => (
+                      <LoginChecker>
+                        <FutsalGround {...this.props} />
+                      </LoginChecker>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/dashboard"
+                    render={() => (
+                      <LoginChecker>
+                        <UserDashboard {...this.props} />
+                      </LoginChecker>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/booking/:groundId"
+                    render={() => (
+                      <LoginChecker>
+                        <BookPage {...this.props} />
+                      </LoginChecker>
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/register" component={RegisterForm}
+                   
+                  />
+                  <Route path="*"
+                    render={() => <LoginChecker><NotFound />
+                    </LoginChecker>} />
+                </Switch>
+              </div>
+              <Footer />
             </div>
+          </ConnectedRouter>
+        </div>
       </Provider>
     );
   }
