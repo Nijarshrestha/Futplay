@@ -31,12 +31,14 @@
     "cjs-loader": "^0.1.0",
     "concurrently": "^4.0.0",
     "connected-react-router": "^4.4.1",
+    "cron": "^1.4.1",
     "express": "^4.16.3",
     "fawn": "^2.1.5",
     "history": "^4.7.2",
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.22.2",
     "mongoose-unique-validator": "^2.0.1",
+    "nodemailer": "^4.6.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.4.1",
@@ -48,7 +50,8 @@
     "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "2.2.12",
-    "transform-runtime": "0.0.0"
+    "transform-runtime": "0.0.0",
+    "twilio": "^3.20.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

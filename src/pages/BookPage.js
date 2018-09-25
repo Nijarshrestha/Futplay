@@ -26,6 +26,25 @@ class BookPage extends Component {
     this.bookGround = this.bookGround.bind(this);
   }
 
+  handleSmsSubmit(){
+    const booking = this.state.current.booking;
+
+    axios({
+      method: 'post',
+      url:'http//localhost:3000/api/sms',
+      data: {
+        Username: this.props.user.Username,
+        groundname: this.props.idvalues[booking.groundId].name,
+        date: booking.date.replace(/d/g, '-'),
+        slots: Tim[booking.slots]
+      }
+      .then(res=>{
+        console.log(res);
+        console.log(res.data);
+      })    
+  })
+}
+
   handleChange(date) {
     this.setState({
       date: date,
@@ -115,8 +134,9 @@ class BookPage extends Component {
                 </Header>
                 <br />
                 <Button
-                  onClick={() => {
+                  onClick={()=>{
                     this.setState({ bookmodal: false });
+                    this.handleSmsSubmit();
                     this.props.push('/dashboard');
                   }}
                   color="green"

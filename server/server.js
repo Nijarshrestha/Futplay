@@ -1,9 +1,10 @@
-const express = require('express')
-const app = express()
-const mongoose = require('mongoose')
-var bodyParser = require('body-parser')
-const path = require('path')
-const port = 3000
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+const path = require('path');
+const port = 3000;
+const nodemailer = require('nodemailer');
 
 
 const users = require('./routes/api/user');
@@ -12,7 +13,10 @@ const usersession = require('./routes/api/usersession');
 const bookinglists = require('./routes/api/bookinglists');
 const grounds = require('./routes/api/groundapi');
 const bookingapi = require('./routes/api/bookingapi');
-const invitationapi = require('./routes/api/invitationapi')
+const invitationapi = require('./routes/api/invitationapi');
+const emailapi = require('./routes/api/emailapi');
+const smsapi = require('./routes/api/smsapi');
+
 /*****Body parser is used as middleware in express to handle post request*****/
 
 app.use(bodyParser.json());
@@ -42,8 +46,10 @@ app.use('/api/futsalcourts',futsalcourts);
 app.use('/api/login',usersession);
 app.use('/api/bookinglists',bookinglists);
 app.use('/api/grounds',grounds);
-app.use('/api/booking',bookingapi)
-app.use('/api/invite',invitationapi)
+app.use('/api/booking',bookingapi);
+app.use('/api/invite',invitationapi);
+app.use('/api/email', emailapi);
+app.use('/api/sms', smsapi);
 
 // app.get('/api/customers', (request,response)=>{
 //     const customers =[

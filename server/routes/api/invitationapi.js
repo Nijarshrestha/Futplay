@@ -34,4 +34,5 @@ invitationRouter.get('/outgoing/:senderId',(req,res)=>{
     })
 })
 
+
 module.exports = invitationRouter

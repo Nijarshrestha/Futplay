@@ -26,4 +26,4 @@ router.post('/',(req,res)=>{
     .then(FutsalCourts =>res.json(FutsalCourts));
 })
 
-module.exports = router
+module.exports = router;
