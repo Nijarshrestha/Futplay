@@ -123,7 +123,7 @@ class UserDashboard extends Component {
                   <span style={{ marginRight: '30px' }} />
                   <span>
                     <Icon name="phone" />
-                    
+                    {data.Phonenumber}
                   </span>
                   <br />
                 </Card.Meta>
